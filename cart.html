@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Shopping Cart | Anjora Handicrafts</title>
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪔</text></svg>">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="header-main">
+            <div class="container">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L14.4 7.2L20 8L16 12L17 17.6L12 15L7 17.6L8 12L4 8L9.6 7.2L12 2Z"></path>
+                        </svg>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-brand">ANJORA</span>
+                        <span class="logo-tagline">Handicrafts & Heritage</span>
+                    </div>
+                </a>
+
+                <div class="header-actions">
+                    <a href="shop.html" class="btn btn-outline-gold btn-sm">← Continue Shopping</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-banner" style="padding: 2.5rem 0;">
+        <div class="container">
+            <h1 class="page-banner-title" style="font-size: 2rem;">Shopping Cart</h1>
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span class="breadcrumb-separator">❖</span>
+                <span>Cart</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="container" style="padding: 3.5rem 1.5rem;">
+        <div id="fullCartContent" style="display: grid; grid-template-columns: 1.8fr 1fr; gap: 2.5rem;">
+            <!-- Left: Table of Items -->
+            <div style="background: #fff; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 2rem;">
+                <h2 style="font-size: 1.35rem; margin-bottom: 1.5rem; color: var(--secondary);">Review Your Handcrafted Items</h2>
+                <div id="fullCartItemsList">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Right: Order Summary & Coupon -->
+            <div>
+                <!-- Coupon Box -->
+                <div style="background: #fff; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.5rem; margin-bottom: 1.5rem;">
+                    <h3 style="font-size: 1rem; margin-bottom: 0.75rem; color: var(--secondary);">Have an Artisan Coupon?</h3>
+                    <form id="cartCouponForm" style="display: flex; gap: 0.5rem;">
+                        <input type="text" id="cartCouponInput" class="form-control" placeholder="e.g. WELCOME10" style="text-transform: uppercase;">
+                        <button type="submit" class="btn btn-primary btn-sm">Apply</button>
+                    </form>
+                    <div style="margin-top: 0.75rem; font-size: 0.785rem; color: var(--text-muted);">
+                        Available: <strong>WELCOME10</strong> (10% off), <strong>HERITAGE15</strong> (15% off orders ₹1,999+)
+                    </div>
+                </div>
+
+                <!-- Summary Box -->
+                <div style="background: #fff; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.75rem; box-shadow: var(--shadow-sm);">
+                    <h3 style="font-size: 1.25rem; margin-bottom: 1.25rem; color: var(--secondary); border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem;">
+                        Order Summary
+                    </h3>
+
+                    <div id="cartFullSummary">
+                        <!-- Populated by JS -->
+                    </div>
+
+                    <a href="checkout.html" class="btn btn-primary" style="width: 100%; margin-top: 1.5rem; padding: 0.95rem;">
+                        Proceed to Secure Checkout →
+                    </a>
+
+                    <div style="margin-top: 1.25rem; text-align: center; font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; justify-content: center; gap: 0.4rem;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                        Protected by Razorpay 256-bit SSL Encryption
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer" style="padding-top: 2.5rem;">
+        <div class="container">
+            <div class="footer-bottom">
+                <div>&copy; 2026 Anjora Handicrafts. All rights reserved.</div>
+                <div class="payment-methods">
+                    <span class="payment-badge">Razorpay Verified</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/products.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <script>
+        function renderFullCartPage() {
+            const items = Cart.getItems();
+            const calcs = Cart.getCalculations();
+            const container = document.getElementById("fullCartItemsList");
+            const summaryContainer = document.getElementById("cartFullSummary");
+
+            if (!container || !summaryContainer) return;
+
+            if (items.length === 0) {
+                document.getElementById("fullCartContent").innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 5rem 1rem; background: #fff; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+                        <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1.5" style="margin-bottom:1.5rem;">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        <h2 style="font-size: 1.5rem; color: var(--secondary); margin-bottom: 0.5rem;">Your Cart is Currently Empty</h2>
+                        <p style="color: var(--text-muted); margin-bottom: 2rem;">Explore our master collections of brassware, folk paintings, and blue pottery.</p>
+                        <a href="shop.html" class="btn btn-primary">Start Shopping Collections</a>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = items.map(item => `
+                <div style="display: flex; gap: 1.5rem; padding: 1.25rem 0; border-bottom: 1px solid var(--border-color); align-items: center;">
+                    <img src="${item.image}" alt="${item.name}" style="width: 80px; height: 80px; object-fit: cover; border-radius: var(--radius-sm);">
+                    <div style="flex: 1;">
+                        <h4 style="font-size: 1rem; margin-bottom: 0.25rem;"><a href="product.html?id=${item.id}" style="color: var(--secondary);">${item.name}</a></h4>
+                        <div style="font-size: 0.8rem; color: var(--primary); margin-bottom: 0.5rem;">Artisan: ${item.artisanName}</div>
+                        <div style="font-size: 0.85rem; color: var(--text-muted);">Unit Price: ${CONFIG.currencySymbol}${item.price.toLocaleString()}</div>
+                    </div>
+                    <div class="qty-control" style="transform: scale(1.1);">
+                        <button class="qty-btn" onclick="Cart.updateQty('${item.id}', ${item.qty - 1})">-</button>
+                        <span class="qty-val">${item.qty}</span>
+                        <button class="qty-btn" onclick="Cart.updateQty('${item.id}', ${item.qty + 1})">+</button>
+                    </div>
+                    <div style="font-weight: 800; font-size: 1.15rem; color: var(--secondary); width: 100px; text-align: right;">
+                        ${CONFIG.currencySymbol}${(item.price * item.qty).toLocaleString()}
+                    </div>
+                    <button onclick="Cart.removeItem('${item.id}')" style="color: #bbb; padding: 0.5rem;" title="Remove Item">
+                        ✕
+                    </button>
+                </div>
+            `).join("");
+
+            summaryContainer.innerHTML = `
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem; font-size: 0.95rem; color: var(--text-muted);">
+                    <span>Bag Subtotal</span>
+                    <span style="font-weight: 600; color: var(--secondary);">${CONFIG.currencySymbol}${calcs.subtotal.toLocaleString()}</span>
+                </div>
+                ${calcs.discount > 0 ? `
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem; font-size: 0.95rem; color: var(--success); font-weight: 600;">
+                        <span>Coupon Discount (${calcs.coupon.code})</span>
+                        <span>-${CONFIG.currencySymbol}${calcs.discount.toLocaleString()}</span>
+                    </div>
+                ` : ''}
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem; font-size: 0.95rem; color: var(--text-muted);">
+                    <span>Pan-India Delivery</span>
+                    <span>${calcs.isFreeShipping ? '<strong style="color: var(--success);">FREE</strong>' : CONFIG.currencySymbol + calcs.shipping}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 1.35rem; font-weight: 800; color: var(--secondary); padding-top: 1rem; border-top: 1px dashed var(--border-color); margin-top: 0.5rem;">
+                    <span>Grand Total</span>
+                    <span>${CONFIG.currencySymbol}${calcs.total.toLocaleString()}</span>
+                </div>
+            `;
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            renderFullCartPage();
+            window.addEventListener("cartUpdated", renderFullCartPage);
+
+            const form = document.getElementById("cartCouponForm");
+            if (form) {
+                form.addEventListener("submit", (e) => {
+                    e.preventDefault();
+                    const input = document.getElementById("cartCouponInput");
+                    if (input && input.value) {
+                        const res = Cart.applyCoupon(input.value);
+                        if (res.success) {
+                            showToast(res.message, "success");
+                            renderFullCartPage();
+                        } else {
+                            showToast(res.message, "danger");
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

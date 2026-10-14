@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed | Anjora Handicrafts</title>
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪔</text></svg>">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        @media print {
+            .site-header, .top-bar, .no-print, .site-footer { display: none !important; }
+            body { background: #fff !important; }
+            .container { max-width: 100% !important; padding: 0 !important; }
+            .checkout-card { border: none !important; box-shadow: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header no-print">
+        <div class="header-main" style="padding: 1rem 0;">
+            <div class="container" style="justify-content: center;">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L14.4 7.2L20 8L16 12L17 17.6L12 15L7 17.6L8 12L4 8L9.6 7.2L12 2Z"></path>
+                        </svg>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-brand">ANJORA</span>
+                        <span class="logo-tagline">Handicrafts & Heritage</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container" style="max-width: 760px; padding: 3rem 1.5rem;">
+        <div class="checkout-card" id="orderReceiptCard">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <div style="width: 72px; height: 72px; border-radius: 50%; background: #e8f5e9; color: var(--success); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                    <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+                <h1 style="font-size: 2rem; color: var(--secondary); margin-bottom: 0.5rem;">Thank You For Your Order!</h1>
+                <p style="color: var(--text-muted); font-size: 1rem;">
+                    Your authentic handcrafted heirloom is being lovingly packaged by our artisans.
+                </p>
+            </div>
+
+            <!-- Receipt Info Grid -->
+            <div style="background: var(--cream-bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.5rem; margin-bottom: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; font-size: 0.9rem;">
+                <div>
+                    <span style="color: var(--text-muted); display: block; font-size: 0.8rem; text-transform: uppercase;">Order Number</span>
+                    <strong id="receiptOrderId" style="font-size: 1.1rem; color: var(--secondary);">-</strong>
+                </div>
+                <div>
+                    <span style="color: var(--text-muted); display: block; font-size: 0.8rem; text-transform: uppercase;">Payment Reference</span>
+                    <strong id="receiptPaymentId" style="font-size: 1.05rem; color: var(--primary);">-</strong>
+                </div>
+                <div>
+                    <span style="color: var(--text-muted); display: block; font-size: 0.8rem; text-transform: uppercase;">Payment Mode</span>
+                    <strong id="receiptPaymentMethod">-</strong>
+                </div>
+                <div>
+                    <span style="color: var(--text-muted); display: block; font-size: 0.8rem; text-transform: uppercase;">Order Date</span>
+                    <strong id="receiptOrderDate">-</strong>
+                </div>
+            </div>
+
+            <!-- Delivery Address -->
+            <div style="margin-bottom: 2rem;">
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.75rem; color: var(--secondary);">Shipping Address</h3>
+                <div id="receiptCustomerDetails" style="background: #fff; border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1rem; font-size: 0.9rem; line-height: 1.6; color: var(--text-primary);">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+
+            <!-- Items Ordered -->
+            <div style="margin-bottom: 2rem;">
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.75rem; color: var(--secondary);">Items in Order</h3>
+                <div id="receiptItemsList" style="border: 1px solid var(--border-color); border-radius: var(--radius-sm); overflow: hidden;">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+
+            <!-- Total Paid -->
+            <div id="receiptTotals" style="margin-bottom: 2.5rem; font-size: 0.95rem;">
+                <!-- Injected by JS -->
+            </div>
+
+            <!-- Action buttons -->
+            <div class="no-print" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <button onclick="window.print()" class="btn btn-outline" style="flex: 1;">
+                    🖨️ Print Invoice / Receipt
+                </button>
+                <a id="receiptWhatsAppBtn" href="#" target="_blank" class="btn btn-primary" style="flex: 1; background: #25D366; border-color: #25D366;">
+                    💬 Track on WhatsApp
+                </a>
+            </div>
+
+            <div class="no-print" style="text-align: center; margin-top: 1.5rem;">
+                <a href="shop.html" style="color: var(--primary); font-weight: 600; text-decoration: underline;">
+                    ← Continue Browsing Handicraft Collections
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer no-print" style="padding-top: 2rem; margin-top: 3rem;">
+        <div class="container">
+            <div class="footer-bottom">
+                <div>&copy; 2026 Anjora Handicrafts. Handcrafted in India.</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/config.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const params = new URLSearchParams(window.location.search);
+            const orderId = params.get("orderId");
+            const lastOrderRaw = localStorage.getItem("anjora_last_order");
+
+            let order = null;
+            if (lastOrderRaw) {
+                try {
+                    const parsed = JSON.parse(lastOrderRaw);
+                    if (!orderId || parsed.orderId === orderId) {
+                        order = parsed;
+                    }
+                } catch(e) {}
+            }
+
+            if (!order) {
+                document.getElementById("orderReceiptCard").innerHTML = `
+                    <div style="text-align: center; padding: 3rem 1rem;">
+                        <h2>Order Not Found</h2>
+                        <p style="color: var(--text-muted); margin: 1rem 0;">No active receipt session found.</p>
+                        <a href="shop.html" class="btn btn-primary">Return to Shop</a>
+                    </div>
+                `;
+                return;
+            }
+
+            // Populate fields
+            document.getElementById("receiptOrderId").textContent = order.orderId;
+            document.getElementById("receiptPaymentId").textContent = order.paymentId;
+            document.getElementById("receiptPaymentMethod").textContent = order.paymentMethod;
+            document.getElementById("receiptOrderDate").textContent = new Date(order.orderDate).toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" });
+
+            // Customer
+            const c = order.customer;
+            document.getElementById("receiptCustomerDetails").innerHTML = `
+                <strong>${c.fullName}</strong><br>
+                ${c.address}, ${c.city}, ${c.state} - ${c.pincode}<br>
+                Mobile: ${c.phone} | Email: ${c.email}
+                ${c.notes ? `<div style="margin-top: 0.5rem; color: var(--text-muted);"><em>Note: ${c.notes}</em></div>` : ''}
+            `;
+
+            // Items
+            document.getElementById("receiptItemsList").innerHTML = order.items.map(item => `
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 1rem; border-bottom: 1px solid var(--border-color); background: #fff;">
+                    <div style="display:flex; align-items:center; gap: 0.85rem;">
+                        <img src="${item.image}" alt="${item.name}" style="width: 48px; height: 48px; object-fit: cover; border-radius: 4px;">
+                        <div>
+                            <div style="font-weight: 600; color: var(--secondary); font-size: 0.9rem;">${item.name}</div>
+                            <div style="font-size: 0.775rem; color: var(--text-muted);">Qty: ${item.qty} × ${CONFIG.currencySymbol}${item.price.toLocaleString()}</div>
+                        </div>
+                    </div>
+                    <div style="font-weight: 700; color: var(--secondary);">
+                        ${CONFIG.currencySymbol}${(item.price * item.qty).toLocaleString()}
+                    </div>
+                </div>
+            `).join("");
+
+            // Totals
+            document.getElementById("receiptTotals").innerHTML = `
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem; color: var(--text-muted);">
+                    <span>Subtotal</span>
+                    <span>${CONFIG.currencySymbol}${order.calcs.subtotal.toLocaleString()}</span>
+                </div>
+                ${order.calcs.discount > 0 ? `
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem; color: var(--success); font-weight: 600;">
+                        <span>Discount (${order.calcs.coupon.code})</span>
+                        <span>-${CONFIG.currencySymbol}${order.calcs.discount.toLocaleString()}</span>
+                    </div>
+                ` : ''}
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem; color: var(--text-muted);">
+                    <span>Shipping</span>
+                    <span>${order.calcs.shipping === 0 ? 'FREE' : CONFIG.currencySymbol + order.calcs.shipping}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 1.25rem; font-weight: 800; color: var(--secondary); border-top: 1px dashed var(--border-color); padding-top: 0.75rem; margin-top: 0.5rem;">
+                    <span>Total Paid</span>
+                    <span>${CONFIG.currencySymbol}${order.calcs.total.toLocaleString()}</span>
+                </div>
+            `;
+
+            // WhatsApp link
+            const waMsg = `Hello Anjora Handicrafts! I placed Order ID: *${order.orderId}* for ${CONFIG.currencySymbol}${order.calcs.total}. Please share dispatch tracking details when shipped.`;
+            document.getElementById("receiptWhatsAppBtn").href = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(waMsg)}`;
+        });
+    </script>
+</body>
+</html>

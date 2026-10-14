@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anjora Handicrafts | Authentic Indian Handmade Heritage & Artisan Crafts</title>
+    <meta name="description" content="Discover authentic Indian handicrafts, brass idols, Madhubani paintings, Jaipur blue pottery, and handcrafted textiles directly from master artisans. 100% authentic with artisan provenance.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪔</text></svg>">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- Top Announcement Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-left">
+                <span class="top-bar-item">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    100% Authentic Handcrafted Heritage
+                </span>
+                <span class="top-bar-item">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+                    Direct Support to 200+ Rural Artisans
+                </span>
+            </div>
+            <div class="top-bar-promo">
+                ✨ Festive Special: Free Pan-India Shipping on orders above <span>₹999</span> | Use Code: <span>WELCOME10</span>
+            </div>
+            <div class="top-bar-right">
+                <a href="contact.html" class="top-bar-link">Artisan Support</a>
+                <span style="opacity: 0.3;">|</span>
+                <a href="https://wa.me/919876543210" target="_blank" class="top-bar-link" style="color:#48cf73; font-weight:600;">
+                    💬 WhatsApp Us
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="site-header">
+        <div class="header-main">
+            <div class="container">
+                <!-- Brand Logo -->
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L14.4 7.2L20 8L16 12L17 17.6L12 15L7 17.6L8 12L4 8L9.6 7.2L12 2Z"></path>
+                        </svg>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-brand">ANJORA</span>
+                        <span class="logo-tagline">Handicrafts & Heritage</span>
+                    </div>
+                </a>
+
+                <!-- Live Search Bar -->
+                <div class="header-search">
+                    <form class="search-form" action="shop.html" method="GET">
+                        <input type="text" id="headerSearchInput" name="q" class="search-input" placeholder="Search brassware, Madhubani art, blue pottery..." autocomplete="off">
+                        <button type="submit" class="search-btn" aria-label="Search">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </button>
+                    </form>
+                    <div id="headerSearchResults" class="search-results-dropdown"></div>
+                </div>
+
+                <!-- Header Actions -->
+                <div class="header-actions">
+                    <a href="wishlist.html" class="action-btn" title="Saved Wishlist">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                        <span class="action-badge wishlist-count-badge" style="display: none;">0</span>
+                    </a>
+
+                    <button class="action-btn" onclick="Cart.openDrawer()" title="View Cart">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        <span class="action-badge cart-count-badge" style="display: none;">0</span>
+                        <span style="font-size: 0.825rem; font-weight: 700; margin-left: 2px;">Cart</span>
+                    </button>
+
+                    <button id="mobileToggle" class="mobile-toggle" aria-label="Toggle Menu">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <nav class="header-nav">
+            <div class="container">
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link active">Home</a></li>
+                    <li class="nav-item-dropdown">
+                        <a href="shop.html" class="nav-link">
+                            Handicrafts
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 3px;"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </a>
+                        <div class="nav-dropdown">
+                            <a href="shop.html?category=brass-metalware" class="dropdown-link">Brass & Metalware <span>→</span></a>
+                            <a href="shop.html?category=paintings-art" class="dropdown-link">Folk Paintings & Art <span>→</span></a>
+                            <a href="shop.html?category=wooden-crafts" class="dropdown-link">Wooden Carvings <span>→</span></a>
+                            <a href="shop.html?category=blue-pottery" class="dropdown-link">Blue Pottery & Ceramics <span>→</span></a>
+                            <a href="shop.html?category=textiles-handloom" class="dropdown-link">Handloom & Shawls <span>→</span></a>
+                            <a href="shop.html?category=pooja-festive" class="dropdown-link">Festive & Pooja Decor <span>→</span></a>
+                        </div>
+                    </li>
+                    <li><a href="shop.html" class="nav-link">Shop All</a></li>
+                    <li><a href="about.html" class="nav-link">Our Heritage & Artisans</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileNavDrawer" class="cart-drawer" style="right: auto; left: 0; transform: translateX(-100%);">
+        <div class="cart-header">
+            <h3>Anjora Handicrafts</h3>
+            <button id="mobileNavClose" class="cart-close-btn">✕</button>
+        </div>
+        <div style="padding: 1.5rem; overflow-y: auto;">
+            <div style="margin-bottom: 1.5rem;">
+                <form action="shop.html" method="GET" style="display:flex;">
+                    <input type="text" name="q" placeholder="Search handicrafts..." class="form-control" style="border-radius: var(--radius-sm) 0 0 var(--radius-sm);">
+                    <button class="btn btn-primary btn-sm" style="border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">Go</button>
+                </form>
+            </div>
+            <ul style="display: flex; flex-direction: column; gap: 1rem; font-size: 1.05rem; font-weight: 600;">
+                <li><a href="index.html" style="color: var(--primary);">Home</a></li>
+                <li><a href="shop.html">All Collections</a></li>
+                <li><a href="shop.html?category=brass-metalware">Brass & Metalware</a></li>
+                <li><a href="shop.html?category=paintings-art">Folk Paintings & Art</a></li>
+                <li><a href="shop.html?category=wooden-crafts">Wooden Carvings</a></li>
+                <li><a href="shop.html?category=blue-pottery">Blue Pottery & Ceramics</a></li>
+                <li><a href="shop.html?category=textiles-handloom">Handloom Textiles</a></li>
+                <li><a href="shop.html?category=pooja-festive">Festive & Pooja Decor</a></li>
+                <li><a href="about.html">About Anjora</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="wishlist.html">My Wishlist</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Hero Section Banner Slider -->
+    <section class="hero-section">
+        <div class="hero-slider">
+            <!-- Slide 1: Brass & Royal Heritage -->
+            <div class="hero-slide active">
+                <div class="hero-slide-bg" style="background-image: url('https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=1920&q=85');"></div>
+                <div class="hero-overlay"></div>
+                <div class="container" style="height: 100%;">
+                    <div class="hero-content">
+                        <div class="hero-badge">✨ 100% Authentic Indian Craftsmanship</div>
+                        <h1 class="hero-title">Timeless Heritage, <span>Directly from Master Artisans</span></h1>
+                        <p class="hero-description">
+                            Bring centuries of Indian art into your living spaces. Explore hand-cast brass antiquities, authentic Madhubani canvases, and exquisite Jaipur blue pottery.
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="shop.html" class="btn btn-primary">Explore Handcrafted Treasures</a>
+                            <a href="about.html" class="btn btn-outline-gold" style="color: #fff; border-color: #fff;">Meet The Artisans</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2: Madhubani Folk Art -->
+            <div class="hero-slide">
+                <div class="hero-slide-bg" style="background-image: url('https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1920&q=85');"></div>
+                <div class="hero-overlay"></div>
+                <div class="container" style="height: 100%;">
+                    <div class="hero-content">
+                        <div class="hero-badge">🎨 GI Heritage Mithila Collection</div>
+                        <h1 class="hero-title">Original Folk Art <span>With Provenance</span></h1>
+                        <p class="hero-description">
+                            Each painting tells a legend of nature, divinity, and rural harmony, handcrafted by third-generation folk painters in Bihar and Rajasthan.
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="shop.html?category=paintings-art" class="btn btn-primary">Shop Paintings</a>
+                            <a href="shop.html" class="btn btn-outline-gold" style="color: #fff; border-color: #fff;">View All Catalog</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Handloom & Sacred Decor -->
+            <div class="hero-slide">
+                <div class="hero-slide-bg" style="background-image: url('https://images.unsplash.com/photo-1605371924599-2d0365da1ae0?auto=format&fit=crop&w=1920&q=85');"></div>
+                <div class="hero-overlay"></div>
+                <div class="container" style="height: 100%;">
+                    <div class="hero-content">
+                        <div class="hero-badge">🪔 Festive & Spiritual Decor</div>
+                        <h1 class="hero-title">Sacred Brass Urlis <span>& Pooja Essentials</span></h1>
+                        <p class="hero-description">
+                            Infuse spiritual tranquility and regal grace into your home sanctuary with heavy-cast solid brass diyas and traditional pooja hampers.
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="shop.html?category=pooja-festive" class="btn btn-primary">Shop Pooja Hampers</a>
+                            <a href="shop.html" class="btn btn-outline-gold" style="color: #fff; border-color: #fff;">Explore Festive</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carousel Indicators -->
+        <div class="hero-controls">
+            <div class="hero-dot active"></div>
+            <div class="hero-dot"></div>
+            <div class="hero-dot"></div>
+        </div>
+    </section>
+
+    <!-- Trust / Value Propositions -->
+    <section class="trust-section">
+        <div class="container">
+            <div class="trust-grid">
+                <div class="trust-card">
+                    <div class="trust-icon-box">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                        </svg>
+                    </div>
+                    <div class="trust-info">
+                        <h4>100% Genuine Handmade</h4>
+                        <p>Certified artisan provenance on every craft.</p>
+                    </div>
+                </div>
+
+                <div class="trust-card">
+                    <div class="trust-icon-box">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <div class="trust-info">
+                        <h4>Fair Trade With Artisans</h4>
+                        <p>Fair compensation directly to craft clusters.</p>
+                    </div>
+                </div>
+
+                <div class="trust-card">
+                    <div class="trust-icon-box">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="1" y="3" width="15" height="13"></rect>
+                            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                        </svg>
+                    </div>
+                    <div class="trust-info">
+                        <h4>Free Shipping Above ₹999</h4>
+                        <p>Safe insured packaging delivered safely.</p>
+                    </div>
+                </div>
+
+                <div class="trust-card">
+                    <div class="trust-icon-box">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                    </div>
+                    <div class="trust-info">
+                        <h4>Razorpay Secure Checkout</h4>
+                        <p>100% encrypted UPI, Cards & Netbanking.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Grid -->
+    <section class="categories-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Heritage Traditions</span>
+                <h2 class="section-title">Explore by Craft Categories</h2>
+                <p class="section-desc">From time-honored metal casting to hand-painted botanical motifs, explore India's richest indigenous art forms.</p>
+            </div>
+
+            <div class="categories-grid" id="homeCategoriesGrid">
+                <!-- Injected via JavaScript from CATEGORIES -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products Showcase -->
+    <section class="products-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Curated Masterpieces</span>
+                <h2 class="section-title">Featured Handicraft Treasures</h2>
+                <p class="section-desc">Each piece is individually sculpted, hand-drawn or hand-hammered with hours of meticulous devotion.</p>
+            </div>
+
+            <div class="products-grid" id="homeFeaturedGrid">
+                <!-- Injected via JS -->
+            </div>
+
+            <div style="text-align: center; margin-top: 3.5rem;">
+                <a href="shop.html" class="btn btn-outline-gold">
+                    View Complete Catalog (12+ Treasures) →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Artisan Spotlight / Story Banner -->
+    <section class="artisan-spotlight">
+        <div class="container">
+            <div class="artisan-grid">
+                <div class="artisan-story-card">
+                    <div class="artisan-image-frame">
+                        <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=900&q=80" alt="Master Craftsman at Work">
+                    </div>
+                    <div class="artisan-badge-float">
+                        <div class="number">200+</div>
+                        <div class="label">Master Artisans</div>
+                    </div>
+                </div>
+
+                <div class="artisan-content">
+                    <span class="section-subtitle" style="color: var(--primary);">Empowering Rural India</span>
+                    <h2>Every Purchase Keeps An Ancient Craft Alive</h2>
+                    <p>
+                        At <strong>Anjora Handicrafts</strong>, our mission goes beyond selling decor. We work side-by-side with master artisans from Moradabad, Mithila, Jaipur, Saharanpur, and Kashmir—ensuring fair trade wages, eliminating middlemen, and preserving centuries-old artistic heritage.
+                    </p>
+                    
+                    <div class="artisan-pillars">
+                        <div class="pillar-item">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <div>
+                                <h5>Direct Artisan Royalties</h5>
+                                <p>Over 70% of product revenue directly empowers the maker.</p>
+                            </div>
+                        </div>
+                        <div class="pillar-item">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <div>
+                                <h5>GI Tagged Provenance</h5>
+                                <p>Preserving geographical authenticity & local materials.</p>
+                            </div>
+                        </div>
+                        <div class="pillar-item">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <div>
+                                <h5>Eco-Conscious Materials</h5>
+                                <p>Natural clay, vegetable dyes, seasoned timber & brass.</p>
+                            </div>
+                        </div>
+                        <div class="pillar-item">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <div>
+                                <h5>Custom Gifting & Orders</h5>
+                                <p>Bespoke bulk & corporate artisan gifting solutions.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="about.html" class="btn btn-primary">Read Our Heritage Story</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trending / Best Sellers -->
+    <section class="products-section" style="background: var(--cream-bg);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Customer Favorites</span>
+                <h2 class="section-title">Trending Best Sellers</h2>
+                <p class="section-desc">Our most admired handcrafted heirlooms celebrated by patrons across India and the globe.</p>
+            </div>
+
+            <div class="products-grid" id="homeTrendingGrid">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Testimonials -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Loved by Connoisseurs</span>
+                <h2 class="section-title">What Our Patrons Say</h2>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">“</div>
+                    <div class="stars" style="margin-bottom: 0.5rem;">★★★★★</div>
+                    <p class="testimonial-text">
+                        "The handcrafted Brass Ganesha idol arrived in exquisite packaging. The weight, detailing, and antique finish are museum quality. Truly happy to support real Indian artisans!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AM</div>
+                        <div class="author-info">
+                            <h5>Ananya Mukherjee</h5>
+                            <span>Bengaluru · Verified Patron</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">“</div>
+                    <div class="stars" style="margin-bottom: 0.5rem;">★★★★★</div>
+                    <p class="testimonial-text">
+                        "The Madhubani Tree of Life painting came with a handwritten card with the artisan's name from Mithila. It has become the centerpiece of our living room. Superb experience."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RS</div>
+                        <div class="author-info">
+                            <h5>Rahul Sharma</h5>
+                            <span>New Delhi · Verified Patron</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">“</div>
+                    <div class="stars" style="margin-bottom: 0.5rem;">★★★★★</div>
+                    <p class="testimonial-text">
+                        "Ordering via Razorpay was seamless. The brass floating Urli was packed with triple-layer thermocol and bubble wrap. Not even a single scratch. Highly recommended!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">PK</div>
+                        <div class="author-info">
+                            <h5>Pooja Kulkarni</h5>
+                            <span>Pune · Verified Patron</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <span class="section-subtitle">Stay Connected</span>
+            <h2 class="section-title" style="margin-bottom: 0.5rem;">Join the Anjora Artisan Family</h2>
+            <p class="section-desc">Receive exclusive previews of new master collections, artisan interview stories, and 10% off your first purchase.</p>
+            
+            <form id="newsletterForm" class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Enter your email address..." required>
+                <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Site Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" class="logo" style="margin-bottom: 1.25rem;">
+                        <div class="logo-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.4 7.2L20 8L16 12L17 17.6L12 15L7 17.6L8 12L4 8L9.6 7.2L12 2Z"></path></svg>
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-brand" style="color: #fff;">ANJORA</span>
+                            <span class="logo-tagline">Handicrafts & Heritage</span>
+                        </div>
+                    </a>
+                    <p>
+                        Anjora Handicrafts celebrates the peerless artistry of Indian craftspeople. We deliver 100% genuine, ethically sourced handmade treasures directly from heritage craft clusters to homes worldwide.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://instagram.com" target="_blank" class="social-btn" title="Instagram">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                        <a href="https://facebook.com" target="_blank" class="social-btn" title="Facebook">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                        </a>
+                        <a href="https://wa.me/919876543210" target="_blank" class="social-btn" title="WhatsApp">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Collections</h4>
+                    <ul class="footer-links">
+                        <li><a href="shop.html?category=brass-metalware">Brass & Metalware</a></li>
+                        <li><a href="shop.html?category=paintings-art">Folk Paintings & Art</a></li>
+                        <li><a href="shop.html?category=wooden-crafts">Wooden Carvings</a></li>
+                        <li><a href="shop.html?category=blue-pottery">Blue Pottery & Ceramics</a></li>
+                        <li><a href="shop.html?category=textiles-handloom">Handloom & Shawls</a></li>
+                        <li><a href="shop.html?category=pooja-festive">Festive & Pooja Decor</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Anjora</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="cart.html">View Cart</a></li>
+                        <li><a href="wishlist.html">Wishlist</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="refund-policy.html">Shipping & Refunds</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Artisan Craft Studio</h4>
+                    <div class="footer-contact-item">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        <span>Artisan Craft Village, Heritage Lane, Jaipur, Rajasthan 302001, India</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        <span>contact@anjorahandicrafts.com</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        <span>+91 98765 43210</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div>
+                    &copy; 2026 Anjora Handicrafts. All Rights Reserved. Handcrafted with pride in India.
+                </div>
+                <div class="payment-methods">
+                    <span class="payment-badge">Razorpay Verified</span>
+                    <span class="payment-badge">UPI / GPay / PhonePe</span>
+                    <span class="payment-badge">Visa / Mastercard</span>
+                    <span class="payment-badge">Net Banking</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Slide-over Cart Drawer -->
+    <div id="cartOverlay" class="cart-overlay" onclick="Cart.closeDrawer()"></div>
+    <div id="cartDrawer" class="cart-drawer">
+        <div class="cart-header">
+            <h3>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                Your Artisan Cart
+            </h3>
+            <button class="cart-close-btn" onclick="Cart.closeDrawer()">✕</button>
+        </div>
+        <div id="cartShippingProgress" class="cart-free-shipping-bar"></div>
+        <div id="cartDrawerItems" class="cart-items-body"></div>
+        <div id="cartDrawerFooter" class="cart-footer"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/products.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <script>
+        // Populate Categories & Featured grids on Home Page
+        document.addEventListener("DOMContentLoaded", () => {
+            // Categories
+            const catGrid = document.getElementById("homeCategoriesGrid");
+            if (catGrid) {
+                catGrid.innerHTML = CATEGORIES.map(c => `
+                    <a href="shop.html?category=${c.id}" class="category-card">
+                        <div class="category-img-wrap">
+                            <img src="${c.image}" alt="${c.name}">
+                        </div>
+                        <h3 class="category-title">${c.name}</h3>
+                        <span class="category-count">${c.itemCount} items</span>
+                    </a>
+                `).join("");
+            }
+
+            // Featured Products
+            const featGrid = document.getElementById("homeFeaturedGrid");
+            if (featGrid) {
+                const featured = window.getFeaturedProducts().slice(0, 4);
+                featGrid.innerHTML = featured.map(p => window.renderProductCard(p)).join("");
+            }
+
+            // Trending Products
+            const trendGrid = document.getElementById("homeTrendingGrid");
+            if (trendGrid) {
+                const trending = window.getTrendingProducts().slice(0, 4);
+                trendGrid.innerHTML = trending.map(p => window.renderProductCard(p)).join("");
+            }
+        });
+    </script>
+</body>
+</html>

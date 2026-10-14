@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Checkout | Anjora Handicrafts</title>
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪔</text></svg>">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- Minimal Header for high conversion -->
+    <header class="site-header" style="box-shadow: none;">
+        <div class="header-main" style="padding: 0.85rem 0;">
+            <div class="container" style="justify-content: space-between;">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L14.4 7.2L20 8L16 12L17 17.6L12 15L7 17.6L8 12L4 8L9.6 7.2L12 2Z"></path>
+                        </svg>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-brand" style="font-size: 1.25rem;">ANJORA</span>
+                        <span class="logo-tagline">100% Secure Checkout</span>
+                    </div>
+                </a>
+
+                <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--success); font-weight: 700;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    <span>256-Bit SSL Encrypted</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-banner" style="padding: 2rem 0;">
+        <div class="container">
+            <h1 class="page-banner-title" style="font-size: 1.85rem;">Delivery & Payment</h1>
+            <div class="breadcrumb">
+                <a href="cart.html">Cart</a>
+                <span class="breadcrumb-separator">❖</span>
+                <span>Checkout</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="container">
+        <!-- Razorpay Setup Status Bar -->
+        <div style="margin-top: 2rem;" id="razorpayKeyNotice"></div>
+
+        <div class="checkout-grid">
+            <!-- Left: Delivery Address & Details -->
+            <div class="checkout-card">
+                <h2 style="font-size: 1.35rem; margin-bottom: 1.5rem; color: var(--secondary);">1. Shipping Address & Contact</h2>
+                
+                <form id="checkoutForm">
+                    <div class="form-group">
+                        <label class="form-label">Full Name *</label>
+                        <input type="text" id="custName" class="form-control" placeholder="e.g. Aarti Singhania" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Mobile Number (For Courier Updates) *</label>
+                            <input type="tel" id="custPhone" class="form-control" placeholder="e.g. 9876543210" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email Address (For Invoice) *</label>
+                            <input type="email" id="custEmail" class="form-control" placeholder="e.g. aarti@example.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Street Address & House / Flat No. *</label>
+                        <input type="text" id="custAddress" class="form-control" placeholder="e.g. Flat 402, Royal Palms, MG Road" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">City *</label>
+                            <input type="text" id="custCity" class="form-control" placeholder="e.g. Jaipur" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">State *</label>
+                            <input type="text" id="custState" class="form-control" placeholder="e.g. Rajasthan" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">PIN Code *</label>
+                            <input type="text" id="custPincode" class="form-control" placeholder="e.g. 302001" maxlength="6" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Special Delivery / Gift Note (Optional)</label>
+                            <input type="text" id="custNotes" class="form-control" placeholder="e.g. Please add festive gift wrap">
+                        </div>
+                    </div>
+
+                    <div class="gateway-badge">
+                        <div style="flex-shrink: 0; width: 36px; height: 36px; background: #fff; border-radius: 50%; display:flex; align-items:center; justify-content:center;">
+                            💳
+                        </div>
+                        <div style="flex: 1;">
+                            <div class="razorpay-logo-text">
+                                Powered by <span>Razorpay</span> Payment Gateway
+                            </div>
+                            <div style="font-size: 0.775rem; color: var(--text-muted); margin-top: 0.2rem;">
+                                Instant checkout via Google Pay, PhonePe, Paytm, BHIM UPI, All Credit/Debit Cards & Netbanking.
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="btnProceedPayment" class="btn btn-primary" style="width: 100%; padding: 1.1rem; font-size: 1.05rem;">
+                        Pay Securely with Razorpay →
+                    </button>
+                </form>
+            </div>
+
+            <!-- Right: Order Review & Pricing -->
+            <div>
+                <div class="checkout-card" style="position: sticky; top: 100px;">
+                    <h3 style="font-size: 1.25rem; margin-bottom: 1.25rem; color: var(--secondary); border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem;">
+                        Order Summary
+                    </h3>
+
+                    <!-- Order items list -->
+                    <div id="checkoutOrderItems" style="max-height: 280px; overflow-y: auto; margin-bottom: 1.25rem;">
+                        <!-- Injected by checkout.js -->
+                    </div>
+
+                    <!-- Coupon apply in checkout -->
+                    <form id="checkoutCouponForm" style="display: flex; gap: 0.5rem; margin-bottom: 1.25rem;">
+                        <input type="text" id="checkoutCouponCode" class="form-control" placeholder="Coupon Code (WELCOME10)" style="text-transform: uppercase;">
+                        <button type="submit" class="btn btn-outline btn-sm">Apply</button>
+                    </form>
+
+                    <!-- Totals breakdown -->
+                    <div id="checkoutTotals">
+                        <!-- Injected by checkout.js -->
+                    </div>
+
+                    <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border-color); font-size: 0.8rem; color: var(--text-muted); line-height: 1.5;">
+                        <p>✓ All handicrafts are insured during transit.</p>
+                        <p>✓ Direct artisan contribution included.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer" style="padding-top: 2rem; margin-top: 4rem;">
+        <div class="container">
+            <div class="footer-bottom">
+                <div>&copy; 2026 Anjora Handicrafts. 100% Authentic Indian Artisan Craft.</div>
+                <div class="payment-methods">
+                    <span class="payment-badge">Razorpay Verified</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/products.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/checkout.js"></script>
+</body>
+</html>
