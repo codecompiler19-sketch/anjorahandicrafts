@@ -2406,3 +2406,15 @@ input, select, textarea { min-width: 0; max-width: 100%; }
     .header-actions { gap: .15rem; }
 }
 
+/* Fix: mobile navigation drawer has an inline left-slide transform. The active
+   state must override that inline transform so the hamburger menu opens on mobile. */
+#mobileNavDrawer.active {
+    transform: translateX(0) !important;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+#mobileNavDrawer {
+    visibility: visible;
+    pointer-events: auto;
+}
