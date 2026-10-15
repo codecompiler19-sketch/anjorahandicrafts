@@ -2653,3 +2653,53 @@ input, select, textarea { min-width: 0; max-width: 100%; }
 @media (prefers-reduced-motion: reduce) {
     .testimonials-viewport { scroll-behavior: auto; }
 }
+
+
+/* Simple image-only homepage slideshow: no text overlay or zoom effect */
+.hero-image-only {
+    height: clamp(260px, 30.2vw, 580px);
+    min-height: 0;
+    overflow: hidden;
+    background: #f8f5f0;
+}
+.hero-image-only .hero-slider,
+.hero-image-only .hero-slide {
+    height: 100%;
+    min-height: 0;
+}
+.hero-image-only .hero-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .5s ease;
+}
+.hero-image-only .hero-slide.active {
+    opacity: 1;
+    visibility: visible;
+}
+.hero-image-only .hero-image-link {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+.hero-image-only .hero-banner-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.hero-image-only .hero-controls {
+    z-index: 5;
+}
+.hero-image-only .hero-dot {
+    cursor: pointer;
+    border: 0;
+}
+@media (max-width: 600px) {
+    .hero-image-only { height: clamp(190px, 48vw, 300px); }
+    .hero-image-only .hero-banner-image { object-fit: cover; }
+}
