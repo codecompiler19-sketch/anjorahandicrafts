@@ -118,32 +118,19 @@
         </nav>
     </header>
 
-    <!-- Mobile Navigation Drawer -->
-    <div id="mobileNavDrawer" class="cart-drawer" style="right: auto; left: 0; transform: translateX(-100%);">
-        <div class="cart-header">
-            <h3>Anjora Handicrafts</h3>
-            <button id="mobileNavClose" class="cart-close-btn">✕</button>
-        </div>
-        <div style="padding: 1.5rem; overflow-y: auto;">
-            <div style="margin-bottom: 1.5rem;">
-                <form action="shop.html" method="GET" style="display:flex;">
-                    <input type="text" name="q" placeholder="Search handicrafts..." class="form-control" style="border-radius: var(--radius-sm) 0 0 var(--radius-sm);">
-                    <button class="btn btn-primary btn-sm" style="border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">Go</button>
-                </form>
-            </div>
-            <ul style="display: flex; flex-direction: column; gap: 1rem; font-size: 1.05rem; font-weight: 600;">
-                <li><a href="index.html" style="color: var(--primary);">Home</a></li>
-                <li><a href="shop.html">All Collections</a></li>
-                
-                
-                
-                
-                
-                
-                <li><a href="about.html">About Anjora</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-                <li><a href="wishlist.html">My Wishlist</a></li>
-            </ul>
+    <!-- Shared mobile navigation drawer with expandable accordion sections -->
+    <div id="mobileNavDrawer" class="cart-drawer mobile-nav-drawer" style="right:auto; left:0; transform:translateX(-100%);">
+        <div class="cart-header"><h3>Anjora Handicrafts</h3><button id="mobileNavClose" class="cart-close-btn" aria-label="Close navigation">✕</button></div>
+        <div class="mobile-nav-content">
+            <form action="shop.html" method="GET" style="display:flex; gap:.4rem; margin-bottom:1rem;">
+                <input type="text" name="q" placeholder="Search handmade accessories..." class="form-control" aria-label="Search products">
+                <button class="btn btn-primary btn-sm" type="submit">Search</button>
+            </form>
+            <a class="mobile-nav-link" href="index.html">Home</a>
+            <details class="mobile-nav-accordion" open><summary>Shop</summary><div class="mobile-nav-submenu"><a href="shop.html">All Products</a><a href="shop.html?category=handmade-accessories">Handmade Accessories</a></div></details>
+            <details class="mobile-nav-accordion"><summary>My Account & Shopping</summary><div class="mobile-nav-submenu"><a href="wishlist.html">Wishlist</a><a href="cart.html">Shopping Cart</a><a href="checkout.html">Checkout</a></div></details>
+            <details class="mobile-nav-accordion"><summary>About Anjora</summary><div class="mobile-nav-submenu"><a href="about.html">About Us</a><a href="contact.html">Contact Us</a></div></details>
+            <details class="mobile-nav-accordion"><summary>Policies</summary><div class="mobile-nav-submenu"><a href="refund-policy.html">Shipping & Refund Policy</a><a href="privacy-policy.html">Privacy Policy</a><a href="terms.html">Terms & Conditions</a></div></details>
         </div>
     </div>
 
