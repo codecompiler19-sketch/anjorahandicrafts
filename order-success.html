@@ -93,6 +93,14 @@
                 <!-- Injected by JS -->
             </div>
 
+            <!-- Payment instructions: official Razorpay link will be added when supplied by the store owner. -->
+            <section id="pendingPaymentPanel" class="no-print" style="background:#fff8e8;border:1px solid #e8c98c;border-radius:12px;padding:1.25rem;margin-bottom:2rem;">
+                <h2 style="font-size:1.2rem;color:var(--secondary);margin-bottom:.5rem;">Next step: complete your payment</h2>
+                <p style="margin-bottom:.75rem;line-height:1.6;">Thank you for placing your order. Your order details have been saved on this device and are awaiting payment. Your order is not confirmed as paid yet.</p>
+                <p id="paymentLinkStatus" style="font-size:.9rem;color:var(--text-muted);margin:0;">The official Razorpay payment link will appear here once it has been configured.</p>
+                <a id="officialRazorpayPaymentLink" href="#" class="btn btn-primary" style="display:none;margin-top:1rem;" target="_blank" rel="noopener noreferrer">Pay securely with Razorpay →</a>
+            </section>
+
             <!-- Action buttons -->
             <div class="no-print" style="display: flex; gap: 1rem; flex-wrap: wrap;">
                 <button onclick="window.print()" class="btn btn-outline" style="flex: 1;">
@@ -152,8 +160,17 @@
 
             // Populate fields
             document.getElementById("receiptOrderId").textContent = order.orderId;
-            document.getElementById("receiptPaymentId").textContent = order.paymentId;
-            document.getElementById("receiptPaymentMethod").textContent = order.paymentMethod;
+            document.getElementById("receiptPaymentId").textContent = order.paymentId === "pending" ? "Pending" : order.paymentId;
+            document.getElementById("receiptPaymentMethod").textContent = order.paymentMethod || order.status || "Pending";
+            const pendingPaymentPanel = document.getElementById("pendingPaymentPanel");
+            if (pendingPaymentPanel && (order.status === "Awaiting payment" || order.paymentId === "pending")) {
+                const paidHeading = document.querySelector("#orderReceiptCard h1");
+                if (paidHeading) paidHeading.textContent = "Thank You for Placing Your Order!";
+                const intro = paidHeading && paidHeading.nextElementSibling;
+                if (intro) intro.textContent = "Your order has been recorded. Please complete payment using the official Razorpay link when it is available.";
+                const totalLabel = document.querySelector("#receiptTotals span");
+                if (totalLabel) totalLabel.textContent = "Total to Pay";
+            }
             document.getElementById("receiptOrderDate").textContent = new Date(order.orderDate).toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" });
 
             // Customer
