@@ -213,8 +213,18 @@ const Checkout = {
             });
             rzp.open();
         } else {
-            // Show Simulation / Test Mode Prompt Modal
-            this.showSimulatedPaymentModal(orderId, customer, items, calcs);
+            // Record the order locally before sending the customer to the payment instructions.
+            // This is a browser-side pending order, not a server-confirmed or paid order.
+            this.finalizeOrder({
+                orderId,
+                paymentId: "pending",
+                paymentMethod: "Payment pending",
+                status: "Awaiting payment",
+                customer,
+                items,
+                calcs,
+                redirectDelay: 0
+            });
         }
     },
 
