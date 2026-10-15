@@ -4,7 +4,7 @@
 
 const Shop = {
     state: {
-        category: "handmade-accessories",
+        category: "all",
         priceRange: "all",
         sortBy: "featured",
         searchQuery: "",
@@ -20,11 +20,10 @@ const Shop = {
 
     parseURLParams() {
         const params = new URLSearchParams(window.location.search);
-        if (params.has("category") && params.get("category") === "handmade-accessories") {
-            this.state.category = "handmade-accessories";
-        } else {
-            this.state.category = "handmade-accessories";
-        }
+        const requestedCategory = params.get("category");
+        this.state.category = requestedCategory && CATEGORIES.some(cat => cat.id === requestedCategory)
+            ? requestedCategory
+            : "all";
         if (params.has("search") || params.has("q")) {
             this.state.searchQuery = (params.get("search") || params.get("q")).toLowerCase();
             const shopSearchInput = document.getElementById("shopSearchInput");
@@ -36,21 +35,26 @@ const Shop = {
         const listEl = document.getElementById("categoryFilterList");
         if (!listEl) return;
 
-        const handmadeCategory = CATEGORIES.find(cat => cat.id === "handmade-accessories");
-        if (!handmadeCategory) {
-            listEl.innerHTML = "";
-            return;
-        }
-        const count = PRODUCTS.filter(p => p.category === "handmade-accessories").length;
+        const allCount = PRODUCTS.length;
         listEl.innerHTML = `
             <li>
                 <label class="filter-label">
-                    <input type="radio" name="catFilter" value="handmade-accessories" checked>
-                    <span>Handmade Accessories (${count})</span>
+                    <input type="radio" name="catFilter" value="all" ${this.state.category === "all" ? "checked" : ""}>
+                    <span>All Products (${allCount})</span>
                 </label>
             </li>
+            ${CATEGORIES.map(cat => {
+                const count = PRODUCTS.filter(product => product.category === cat.id).length;
+                return `
+                    <li>
+                        <label class="filter-label">
+                            <input type="radio" name="catFilter" value="${cat.id}" ${this.state.category === cat.id ? "checked" : ""}>
+                            <span>${cat.name} (${count})</span>
+                        </label>
+                    </li>
+                `;
+            }).join("")}
         `;
-
     },
 
     bindEvents() {
@@ -60,17 +64,6 @@ const Shop = {
             catList.addEventListener("change", (e) => {
                 if (e.target.name === "catFilter") {
                     this.state.category = e.target.value;
-                    this.filterAndRender();
-                }
-            });
-        }
-
-        // Price range radios
-        const priceList = document.getElementById("priceFilterList");
-        if (priceList) {
-            priceList.addEventListener("change", (e) => {
-                if (e.target.name === "priceFilter") {
-                    this.state.priceRange = e.target.value;
                     this.filterAndRender();
                 }
             });
@@ -113,19 +106,6 @@ const Shop = {
                 p.artisan.region.toLowerCase().includes(q) ||
                 p.tags.some(t => t.toLowerCase().includes(q))
             );
-        }
-
-        // Price range
-        if (this.state.priceRange !== "all") {
-            if (this.state.priceRange === "under-1000") {
-                results = results.filter(p => p.price < 1000);
-            } else if (this.state.priceRange === "1000-2500") {
-                results = results.filter(p => p.price >= 1000 && p.price <= 2500);
-            } else if (this.state.priceRange === "2500-5000") {
-                results = results.filter(p => p.price > 2500 && p.price <= 5000);
-            } else if (this.state.priceRange === "above-5000") {
-                results = results.filter(p => p.price > 5000);
-            }
         }
 
         // Sort
@@ -173,7 +153,6 @@ const Shop = {
     resetFilters() {
         this.state = {
             category: "all",
-            priceRange: "all",
             sortBy: "featured",
             searchQuery: "",
             onlyInStock: false
@@ -182,8 +161,6 @@ const Shop = {
         const catRadio = document.querySelector('input[name="catFilter"][value="all"]');
         if (catRadio) catRadio.checked = true;
 
-        const priceRadio = document.querySelector('input[name="priceFilter"][value="all"]');
-        if (priceRadio) priceRadio.checked = true;
 
         const searchInput = document.getElementById("shopSearchInput");
         if (searchInput) searchInput.value = "";
