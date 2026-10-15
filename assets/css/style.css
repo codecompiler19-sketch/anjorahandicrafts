@@ -3019,3 +3019,28 @@ input, select, textarea { min-width: 0; max-width: 100%; }
     }
     .hero-section.hero-image-only .hero-arrow svg { width: 19px; height: 19px; }
 }
+
+
+/* Site-wide responsive safeguards */
+html { max-width: 100%; overflow-x: clip; }
+body { width: 100%; min-width: 0; }
+img, video, iframe, svg { max-width: 100%; }
+input, select, textarea, button { max-width: 100%; }
+.container { width: min(100% - 2rem, 1200px); }
+@media (max-width: 768px) {
+    .container { width: min(100% - 1.25rem, 1200px); }
+    .site-header, .header-main, .header-main > .container { min-width: 0; }
+    .header-search { min-width: 0; }
+    .header-search input, .search-input { width: 100%; min-width: 0; }
+    .nav-menu { flex-wrap: wrap; }
+    .product-grid, .products-grid, .categories-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .product-card, .category-card { min-width: 0; }
+    .product-card img, .category-card img { height: auto; }
+    table { display: block; max-width: 100%; overflow-x: auto; }
+}
+@media (max-width: 420px) {
+    .container { width: calc(100% - 1rem); }
+    .product-grid, .products-grid, .categories-grid { gap: .65rem; }
+    .product-card h3, .product-card .product-title { overflow-wrap: anywhere; }
+    .btn, .button, button { max-width: 100%; }
+}
