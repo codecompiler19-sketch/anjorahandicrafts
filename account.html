@@ -30,7 +30,7 @@
                     <button class="account-submit" id="saveProfile" type="button">Save profile</button>
                     <button class="account-submit" id="logoutButton" type="button" style="background:#55483b">Log out</button>
                 </div>
-                <h2 style="margin-top:2rem">My orders</h2>
+                <nav style="display:flex;gap:.6rem;flex-wrap:wrap;margin:1rem 0 1.5rem"><a class="account-submit" style="width:auto;text-align:center;text-decoration:none" href="account.html">My orders & profile</a><a class="account-submit" style="width:auto;text-align:center;text-decoration:none;background:#55483b" href="addresses.html">My addresses</a></nav><h2 style="margin-top:2rem">My orders</h2>
                 <div id="orderList"><p>Loading your orders…</p></div>
             </div>
             <div id="accountAccess">
@@ -195,7 +195,7 @@
           }
           target.innerHTML = orders.map(order => {
             const safe = value => String(value ?? "").replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
-            return `<article style="padding:1rem 0;border-bottom:1px solid #eadfce"><strong>Order ${safe(order.orderNumber || order.id)}</strong><p>Status: ${safe(order.status || "Processing")}</p><p>Total: ${safe(order.currency || "INR")} ${safe(order.total ?? order.amount ?? "—")}</p></article>`;
+            return `<article style="padding:1rem 0;border-bottom:1px solid #eadfce"><strong>Order ${safe(order.orderNumber || order.id)}</strong><p>Status: ${safe(order.status || "Processing")}</p><p>Total: ${safe(order.currency || "INR")} ${safe(order.total ?? order.amount ?? "—")}</p><p><a href="order-details.html?id=${encodeURIComponent(order.id)}" style="color:#8a5b22;text-decoration:underline;font-weight:700">View order details →</a></p></article>`;
           }).join("");
         } catch (error) {
           target.textContent = "Order history isn't available yet. Firestore rules and order integration must be configured.";
