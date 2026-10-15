@@ -2230,3 +2230,104 @@ button, .btn, .action-btn, .social-btn { touch-action: manipulation; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
 
+/* ==========================================================================
+   Festive scrolling announcement + creative feminine polish
+   ========================================================================== */
+.top-bar {
+    overflow: hidden;
+    background: linear-gradient(100deg, #211b20 0%, #38232f 52%, #211b20 100%);
+}
+.top-bar-promo {
+    flex: 1 1 320px;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+    color: #fff8ef;
+}
+.top-bar-promo-track {
+    display: inline-block;
+    min-width: max-content;
+    padding-inline: 1.25rem;
+    animation: festive-promo-travel 20s linear infinite;
+    will-change: transform;
+}
+.top-bar-promo-track .promo-code {
+    display: inline-block;
+    margin-inline: .15rem;
+    padding: .08rem .45rem;
+    border: 1px solid rgba(245, 211, 154, .75);
+    border-radius: 999px;
+    background: rgba(209, 147, 63, .18);
+    color: #ffe0a8;
+    letter-spacing: .06em;
+}
+.top-bar-promo:hover .top-bar-promo-track,
+.top-bar-promo:focus-within .top-bar-promo-track {
+    animation-play-state: paused;
+}
+@keyframes festive-promo-travel {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100%); }
+}
+
+/* A soft blush-and-gold visual direction for creative women and makers.
+   The original cream-and-gold brand palette remains the foundation. */
+:root {
+    --creator-blush: #fbf0f2;
+    --creator-rose: #98576a;
+    --creator-rose-deep: #774052;
+}
+.section-header .section-title::after {
+    background: linear-gradient(90deg, var(--primary), #dba5b4, var(--primary));
+}
+.product-card,
+.category-card,
+.testimonial-card {
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.product-card {
+    border: 1px solid rgba(152, 87, 106, .12);
+    box-shadow: 0 7px 24px rgba(70, 43, 51, .055);
+}
+.product-card:hover,
+.category-card:hover,
+.testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 34px rgba(91, 51, 64, .13);
+}
+.product-card .badge-sale,
+.discount-tag {
+    border-radius: 999px;
+}
+.btn-primary {
+    box-shadow: 0 6px 16px rgba(209, 147, 63, .18);
+}
+.newsletter-section {
+    background: linear-gradient(135deg, var(--creator-blush), var(--cream-bg) 58%, #f5e6d0);
+}
+.newsletter-form {
+    border-color: rgba(152, 87, 106, .2);
+}
+.testimonial-card {
+    background: linear-gradient(145deg, #fffdfb, var(--creator-blush));
+    border: 1px solid rgba(152, 87, 106, .12);
+}
+@media (max-width: 768px) {
+    .top-bar-promo {
+        width: 100%;
+        flex: 0 0 auto;
+        font-size: .78rem;
+    }
+    .top-bar-promo-track { animation-duration: 18s; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .top-bar-promo-track {
+        animation: none;
+        white-space: normal;
+        min-width: 0;
+    }
+}
+
