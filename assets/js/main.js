@@ -303,42 +303,49 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Hero Slider Carousel
-    const slides = document.querySelectorAll(".hero-slide");
-    const dots = document.querySelectorAll(".hero-dot");
+    // Hero Slider Carousel with dots and left/right arrows
+    const heroSection = document.querySelector(".hero-section.hero-image-only");
+    const slides = heroSection ? heroSection.querySelectorAll(".hero-slide") : [];
+    const dots = heroSection ? heroSection.querySelectorAll(".hero-dot") : [];
+    const previousArrow = heroSection ? heroSection.querySelector(".hero-arrow-left") : null;
+    const nextArrow = heroSection ? heroSection.querySelector(".hero-arrow-right") : null;
     let currentSlide = 0;
     let slideInterval = null;
 
     function goToSlide(index) {
-        slides.forEach((s, i) => {
-            s.classList.toggle("active", i === index);
+        if (!slides.length) return;
+        currentSlide = (index + slides.length) % slides.length;
+        slides.forEach((slide, i) => slide.classList.toggle("active", i === currentSlide));
+        dots.forEach((dot, i) => {
+            dot.classList.toggle("active", i === currentSlide);
+            dot.setAttribute("aria-current", i === currentSlide ? "true" : "false");
         });
-        dots.forEach((d, i) => {
-            d.classList.toggle("active", i === index);
-        });
-        currentSlide = index;
+    }
+
+    function startSlideTimer() {
+        if (slides.length < 2) return;
+        clearInterval(slideInterval);
+        slideInterval = setInterval(() => goToSlide(currentSlide + 1), 6000);
+    }
+
+    function resetSlideTimer() {
+        clearInterval(slideInterval);
+        startSlideTimer();
     }
 
     if (slides.length > 1) {
-        dots.forEach((dot, index) => {
-            dot.addEventListener("click", () => {
-                goToSlide(index);
-                resetSlideTimer();
-            });
+        dots.forEach((dot, index) => dot.addEventListener("click", () => {
+            goToSlide(index);
+            resetSlideTimer();
+        }));
+        if (previousArrow) previousArrow.addEventListener("click", () => {
+            goToSlide(currentSlide - 1);
+            resetSlideTimer();
         });
-
-        function startSlideTimer() {
-            slideInterval = setInterval(() => {
-                let next = (currentSlide + 1) % slides.length;
-                goToSlide(next);
-            }, 6000);
-        }
-
-        function resetSlideTimer() {
-            clearInterval(slideInterval);
-            startSlideTimer();
-        }
-
+        if (nextArrow) nextArrow.addEventListener("click", () => {
+            goToSlide(currentSlide + 1);
+            resetSlideTimer();
+        });
         startSlideTimer();
     }
 
