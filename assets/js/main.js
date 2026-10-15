@@ -362,3 +362,30 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+
+// Delayed sticky Instagram follow tab (shared across storefront pages)
+function initAnjoraInstagramTab() {
+    if (document.getElementById("anjoraInstagramTab")) return;
+
+    const tab = document.createElement("a");
+    tab.id = "anjoraInstagramTab";
+    tab.className = "anjora-instagram-tab";
+    tab.href = "https://www.instagram.com/anjorahandicrafts/";
+    tab.target = "_blank";
+    tab.rel = "noopener noreferrer";
+    tab.setAttribute("aria-label", "Follow Anjora Handicrafts on Instagram (opens in a new tab)");
+    tab.innerHTML = '<span class="anjora-instagram-tab__icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle class="anjora-instagram-tab__dot" cx="17.5" cy="6.5" r="1"></circle></svg></span><span class="anjora-instagram-tab__label">Follow us on Instagram</span>';
+    document.body.appendChild(tab);
+
+    window.setTimeout(() => {
+        tab.classList.add("is-visible");
+        tab.setAttribute("tabindex", "0");
+    }, 5000);
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAnjoraInstagramTab, { once: true });
+} else {
+    initAnjoraInstagramTab();
+}
