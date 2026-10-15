@@ -1,0 +1,32 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Customers can read and update only their own profile.
+    match /users/{userId} {
+      allow create: if request.auth != null
+        && request.auth.uid == userId
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.email == request.auth.token.email;
+      allow read: if request.auth != null && request.auth.uid == userId;
+      allow update: if request.auth != null
+        && request.auth.uid == userId
+        && request.resource.data.uid == resource.data.uid
+        && request.resource.data.email == resource.data.email
+        && request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(['displayName', 'phone', 'address', 'updatedAt']);
+      allow delete: if false;
+    }
+
+    // Browser clients can view their own orders but cannot create, alter, or delete orders.
+    // Trusted server/Admin SDK code must create/update order records after validation/payment verification.
+    match /orders/{orderId} {
+      allow read: if request.auth != null && resource.data.userId == request.auth.uid;
+      allow create, update, delete: if false;
+    }
+
+    // Deny access to all other collections unless a specific rule is added.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
