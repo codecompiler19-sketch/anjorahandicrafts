@@ -330,7 +330,8 @@
 
         document.addEventListener("DOMContentLoaded", () => {
             const params = new URLSearchParams(window.location.search);
-            const productId = params.get("id") || params.get("slug") || "prod-001";
+            const pathSlug = window.location.pathname.split("/").pop().replace(/\.html$/i, "");
+            const productId = params.get("id") || params.get("slug") || pathSlug;
             currentProduct = window.getProductById(productId) || PRODUCTS[0];
 
             // Set product-specific SEO metadata for search engines and social previews.
@@ -341,7 +342,7 @@
                 descriptionMeta.name = "description";
                 document.head.appendChild(descriptionMeta);
             }
-            descriptionMeta.content = currentProduct.shortDesc.slice(0, 155);
+            descriptionMeta.content = currentProduct.metaDescription || currentProduct.shortDesc.slice(0, 155);
             let keywordsMeta = document.querySelector('meta[name="keywords"]');
             if (!keywordsMeta) {
                 keywordsMeta = document.createElement("meta");
@@ -349,6 +350,7 @@
                 document.head.appendChild(keywordsMeta);
             }
             keywordsMeta.content = currentProduct.tags.join(", ");
+            document.title = currentProduct.seoTitle || currentProduct.name;
 
             if (currentProduct) {
                 document.title = `${currentProduct.name} | Anjora Handicrafts`;
