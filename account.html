@@ -38,7 +38,7 @@
                     <button type="button" class="active" id="loginTab" role="tab" aria-selected="true">Login</button>
                     <button type="button" id="registerTab" role="tab" aria-selected="false">Register</button>
                 </div>
-                <form class="account-form" id="accountForm">
+                <form class="account-form" id="accountForm" method="post">
                     <label id="nameField" hidden>Full name<input type="text" name="name" autocomplete="name" placeholder="Your full name"></label>
                     <label>Email address<input type="email" name="email" autocomplete="email" placeholder="you@example.com" required></label>
                     <label>Password<input type="password" name="password" autocomplete="current-password" minlength="6" placeholder="At least 6 characters" required></label>
@@ -51,6 +51,18 @@
     </main>
     <footer class="site-footer"><div class="container"><p>&copy; <span id="currentYear">2026</span> Anjora Handicrafts. <a href="privacy-policy.html">Privacy Policy</a></p></div></footer>
     <script src="assets/js/main.js?v=20261016-social-sidebar-preview"></script>
+    <script>
+      if (window.location.search) window.history.replaceState({}, document.title, window.location.pathname + window.location.hash);
+      window.__firebaseAccountReady = false;
+      document.getElementById("accountForm").addEventListener("submit", function(event) {
+        if (!window.__firebaseAccountReady) {
+          event.preventDefault();
+          const notice = document.getElementById("accountNotice");
+          notice.textContent = "Firebase did not finish loading. Refresh the page and try again. If this continues, open the browser console for the Firebase error.";
+          notice.style.background = "#fff0ed"; notice.style.color = "#8c2f20";
+        }
+      });
+    </script>
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
       import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, signOut, onAuthStateChanged, updateProfile } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
@@ -69,6 +81,7 @@
       const app = initializeApp(firebaseConfig);
       const auth = getAuth(app);
       const db = getFirestore(app);
+      window.__firebaseAccountReady = true;
       const $ = id => document.getElementById(id);
       let mode = "login";
       let currentUser = null;
@@ -182,7 +195,7 @@
           }
           target.innerHTML = orders.map(order => {
             const safe = value => String(value ?? "").replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
-            return '<article style="padding:1rem 0;border-bottom:1px solid #eadfce"><strong>Order ' + safe(order.orderNumber || order.id) + '</strong><p>Status: ' + safe(order.status || "Processing") + '</p><p>Total: ' + safe(order.currency || "INR") + " " + safe(order.total ?? order.amount ?? "—") + '</p></article>";
+            return `<article style="padding:1rem 0;border-bottom:1px solid #eadfce"><strong>Order ${safe(order.orderNumber || order.id)}</strong><p>Status: ${safe(order.status || "Processing")}</p><p>Total: ${safe(order.currency || "INR")} ${safe(order.total ?? order.amount ?? "—")}</p></article>`;
           }).join("");
         } catch (error) {
           target.textContent = "Order history isn't available yet. Firestore rules and order integration must be configured.";
