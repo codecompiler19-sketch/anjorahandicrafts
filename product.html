@@ -377,7 +377,7 @@
 
                 // Main Image
                 const mainImg = document.getElementById("mainGalleryImg");
-                mainImg.src = currentProduct.images[0];
+                mainImg.src = encodeURI(currentProduct.images[0]);
                 mainImg.alt = currentProduct.name;
 
                 // Thumbs
