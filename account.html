@@ -258,7 +258,7 @@
       });
     </script>
     <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+      import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
       import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, signOut, onAuthStateChanged, updateProfile } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
       import { getFirestore, doc, getDoc, setDoc, collection, getDocs, query, orderBy, limit, where } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
@@ -274,7 +274,7 @@
 
       let app, auth, db;
       try {
-        app = initializeApp(firebaseConfig);
+        app = getApps().length ? getApp() : initializeApp(firebaseConfig);
         auth = getAuth(app);
         db = getFirestore(app);
         window.__firebaseAccountReady = true;
@@ -389,11 +389,15 @@
         const target = $("orderList");
         target.textContent = "Loading your orders…";
         try {
-          const ordersQuery = query(collection(db, "orders"), where("userId", "==", user.uid), orderBy("createdAt", "desc"), limit(25));
-          const snapshots = await getDocs(ordersQuery);
+          // Filter by the signed-in UID and sort locally to avoid a composite index requirement.
+          const snapshots = await getDocs(query(collection(db, "orders"), where("userId", "==", user.uid), limit(100)));
           const orders = snapshots.docs.map(item => ({ id: item.id, ...item.data() }));
+          orders.sort((a, b) => {
+            const dateValue = value => value && value.toDate ? value.toDate().getTime() : (value ? new Date(value).getTime() : 0);
+            return dateValue(b.createdAt) - dateValue(a.createdAt);
+          });
           if (!orders.length) {
-            target.textContent = "No orders are linked to this account yet.";
+            target.innerHTML = '<div style="padding:1.2rem 0"><strong>No orders linked to this account yet.</strong><p style="color:#6e6962;margin-top:.4rem">Orders will appear here once checkout saves them to the orders database with your customer account ID.</p><a href="shop.html" style="display:inline-block;margin-top:.7rem;color:#8a5b22;text-decoration:underline;font-weight:700">Explore the shop →</a></div>';
             return;
           }
           target.innerHTML = orders.map(order => {
@@ -401,7 +405,9 @@
             return `<article style="padding:1rem 0;border-bottom:1px solid #eadfce"><strong>Order ${safe(order.orderNumber || order.id)}</strong><p>Status: ${safe(order.status || "Processing")}</p><p>Total: ${safe(order.currency || "INR")} ${safe(order.total ?? order.amount ?? "—")}</p><p><a href="order-details.html?id=${encodeURIComponent(order.id)}" style="color:#8a5b22;text-decoration:underline;font-weight:700">View order details →</a></p></article>`;
           }).join("");
         } catch (error) {
-          target.textContent = "Order history isn't available yet. Firestore rules and order integration must be configured.";
+          console.error("Anjora order history query failed:", error);
+          const code = error && error.code ? String(error.code).replace(/[&<>"]/g, "") : "unknown";
+          target.innerHTML = '<div style="padding:1rem 0"><strong>We couldn’t load your order history.</strong><p style="color:#6e6962;margin-top:.4rem">Firebase error: ' + code + '. Check that the latest Firestore rules are published and each order has a matching userId.</p></div>';
         }
       }
       onAuthStateChanged(auth, async user => {
@@ -415,8 +421,11 @@
         $("accountIntro").textContent = user ? (user.email || "You are signed in.") : "Sign in or create an account to keep your orders and details together.";
         if (user) {
           $("signedInMessage").textContent = "Signed in as " + (user.email || "");
-          try { await loadProfile(user); } catch (error) { message("Signed in, but profile storage is not ready. Check Firestore setup and rules.", true); }
+          message("You are signed in. Your account details are ready.");
+          try { await loadProfile(user); } catch (error) { console.error("Anjora profile load failed:", error); message("Signed in, but profile storage is not ready. Check Firestore setup and rules.", true); }
           await loadOrders(user);
+        } else {
+          message("Sign in or create an account to access your customer dashboard.");
         }
       });
       $("currentYear").textContent = new Date().getFullYear();
