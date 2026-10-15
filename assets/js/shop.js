@@ -5,7 +5,6 @@
 const Shop = {
     state: {
         category: "all",
-        priceRange: "all",
         sortBy: "featured",
         searchQuery: "",
         onlyInStock: false
