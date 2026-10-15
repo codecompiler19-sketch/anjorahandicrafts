@@ -22,10 +22,10 @@
 </form><p id="addressNotice" role="status" aria-live="polite" style="margin-top:1rem"></p>
 </section></main>
 <script type="module">
-import {initializeApp,getApps,getApp} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
-import {getAuth,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
-import {getFirestore,doc,getDoc,setDoc} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
-const cfg={apiKey:"AIzaSyAIg8X7TGrRmhed31LOZwqkRA2K8nSVjlI",authDomain:"anjanahandicrafts-6e4ce.firebaseapp.com",projectId:"anjanahandicrafts-6e4ce",storageBucket:"anjanahandicrafts-6e4ce.firebasestorage.app",messagingSenderId:"889895915215",appId:"1:889895915215:web:587a656ab791a3994bf1ba",measurementId:"G-WC6FWG80BB"};
+import {initializeApp,getApps,getApp} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import {getAuth,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+import {getFirestore,doc,getDoc,setDoc} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+const cfg={apiKey:"AIzaSyAIg8X7TGrRmhed31LOZwqkRAK2n8SVjlI",authDomain:"anjanahandicrafts-6e4ce.firebaseapp.com",projectId:"anjanahandicrafts-6e4ce",storageBucket:"anjanahandicrafts-6e4ce.firebasestorage.app",messagingSenderId:"889895915215",appId:"1:889895915215:web:587a656ab791a3994bf1ba",measurementId:"G-WC6FWG80BB"};
 const app=getApps().length?getApp():initializeApp(cfg),auth=getAuth(app),db=getFirestore(app);
 const $=id=>document.getElementById(id);let userNow=null;
 onAuthStateChanged(auth,async user=>{if(!user){location.href="account.html?next=addresses";return}userNow=user;$("addressEmail").value=user.email||"";try{const s=await getDoc(doc(db,"users",user.uid));if(s.exists()){const d=s.data();$("addressName").value=d.displayName||user.displayName||"";$("addressPhone").value=d.phone||"";$("addressLine").value=d.address||"";$("addressCity").value=d.city||"";$("addressState").value=d.state||"";$("addressPin").value=d.pincode||""}}catch(e){$("addressNotice").textContent="Could not load saved address. Check Firestore setup and rules."}});
