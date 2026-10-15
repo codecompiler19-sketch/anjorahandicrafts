@@ -28,6 +28,8 @@ function ensureAccountControl() {
   return wrap.querySelector(".account-header-btn");
 }
 function render(user) {
+  // Expose a small bridge so pages with their own Firebase auth listener can refresh this menu too.
+  window.renderAnjoraAccountMenu = render;
   const link = ensureAccountControl();
   if (!link) return;
   if (!user) {
@@ -85,4 +87,5 @@ function render(user) {
     }
   });
 }
-onAuthStateChanged(auth, render);
+onAuthStateChanged(auth, user => render(user));
+window.addEventListener("anjora-auth-state", event => render(event.detail?.user || null));
