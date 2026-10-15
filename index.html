@@ -346,7 +346,12 @@
                 <h2 class="section-title">What Our Patrons Say</h2>
             </div>
 
-            <div class="testimonials-grid">
+            <div class="testimonials-carousel" aria-label="Customer testimonials">
+                <button class="testimonial-arrow testimonial-arrow-left" type="button" aria-label="Previous testimonials" aria-controls="testimonialsTrack">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+                </button>
+                <div class="testimonials-viewport">
+                    <div class="testimonials-grid" id="testimonialsTrack">
                 <div class="testimonial-card">
                     <div class="testimonial-quote">“</div>
                     <div class="stars" style="margin-bottom: 0.5rem;">★★★★★</div>
@@ -390,7 +395,11 @@
                             <span>Pune · Verified Patron</span>
                         </div>
                     </div>
+                    </div>
                 </div>
+                <button class="testimonial-arrow testimonial-arrow-right" type="button" aria-label="Next testimonials" aria-controls="testimonialsTrack">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+                </button>
             </div>
         </div>
     </section>
@@ -531,6 +540,33 @@
                 const trending = window.getTrendingProducts().slice(0, 4);
                 trendGrid.innerHTML = trending.map(p => window.renderProductCard(p)).join("");
             }
+        });
+    </script>
+<script>
+        // Accessible, responsive testimonial carousel
+        document.addEventListener("DOMContentLoaded", () => {
+            const viewport = document.querySelector(".testimonials-viewport");
+            const track = document.getElementById("testimonialsTrack");
+            const previous = document.querySelector(".testimonial-arrow-left");
+            const next = document.querySelector(".testimonial-arrow-right");
+            if (!viewport || !track || !previous || !next) return;
+
+            const updateArrows = () => {
+                const maxScroll = viewport.scrollWidth - viewport.clientWidth;
+                previous.disabled = viewport.scrollLeft <= 2;
+                next.disabled = viewport.scrollLeft >= maxScroll - 2;
+            };
+            const scrollAmount = () => {
+                const card = track.querySelector(".testimonial-card");
+                const styles = window.getComputedStyle(track);
+                const gap = parseFloat(styles.columnGap || styles.gap) || 0;
+                return card ? card.getBoundingClientRect().width + gap : viewport.clientWidth;
+            };
+            previous.addEventListener("click", () => viewport.scrollBy({ left: -scrollAmount(), behavior: "smooth" }));
+            next.addEventListener("click", () => viewport.scrollBy({ left: scrollAmount(), behavior: "smooth" }));
+            viewport.addEventListener("scroll", updateArrows, { passive: true });
+            window.addEventListener("resize", updateArrows);
+            updateArrows();
         });
     </script>
 </body>
