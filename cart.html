@@ -59,12 +59,15 @@
                 <!-- Coupon Box -->
                 <div style="background: #fff; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.5rem; margin-bottom: 1.5rem;">
                     <h3 style="font-size: 1rem; margin-bottom: 0.75rem; color: var(--secondary);">Have a Coupon?</h3>
+                    <div id="cartCouponRadioOptions" role="radiogroup" aria-label="Choose a discount coupon" style="display: grid; gap: 0.65rem; margin: 0.75rem 0 1rem;">
+                        <!-- Coupon radio options populated from config.js -->
+                    </div>
                     <form id="cartCouponForm" style="display: flex; gap: 0.5rem;">
-                        <input type="text" id="cartCouponInput" class="form-control" placeholder="e.g. WELCOME10" style="text-transform: uppercase;">
+                        <input type="text" id="cartCouponInput" class="form-control" placeholder="Or enter a coupon code" style="text-transform: uppercase;" aria-label="Enter coupon code">
                         <button type="submit" class="btn btn-primary btn-sm">Apply</button>
                     </form>
-                    <div style="margin-top: 0.75rem; font-size: 0.785rem; color: var(--text-muted);">
-                        Available: <strong>WELCOME10</strong> (10% off orders ₹999+), <strong>HERITAGE15</strong> (15% off orders ₹1,999+)
+                    <div id="cartCouponMessage" aria-live="polite" style="margin-top: 0.75rem; font-size: 0.82rem; color: var(--text-muted);">
+                        Select an eligible coupon to apply your discount.
                     </div>
                 </div>
 
@@ -110,6 +113,55 @@
     <script src="assets/js/main.js"></script>
 
     <script>
+        function renderCouponRadioOptions() {
+            const options = document.getElementById("cartCouponRadioOptions");
+            const message = document.getElementById("cartCouponMessage");
+            if (!options || !window.CONFIG || !window.Cart) return;
+
+            const subtotal = Cart.getSubtotal();
+            const applied = Cart.getAppliedCoupon();
+            options.innerHTML = `
+                <label style="display:flex; align-items:flex-start; gap:0.65rem; padding:0.75rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); cursor:pointer;">
+                    <input type="radio" name="cartCouponChoice" value="" ${!applied ? "checked" : ""} style="margin-top:0.2rem; accent-color:var(--primary);">
+                    <span><strong>No coupon</strong><br><small style="color:var(--text-muted);">Pay the regular order total.</small></span>
+                </label>
+                ${CONFIG.coupons.map(coupon => {
+                    const eligible = subtotal >= coupon.minSpend;
+                    return `
+                        <label style="display:flex; align-items:flex-start; gap:0.65rem; padding:0.75rem; border:1px solid ${applied && applied.code === coupon.code ? "var(--primary)" : "var(--border-color)"}; border-radius:var(--radius-sm); cursor:${eligible ? "pointer" : "not-allowed"}; opacity:${eligible ? "1" : "0.65"};">
+                            <input type="radio" name="cartCouponChoice" value="${coupon.code}" ${applied && applied.code === coupon.code ? "checked" : ""} ${eligible ? "" : "disabled"} style="margin-top:0.2rem; accent-color:var(--primary);">
+                            <span><strong>${coupon.code} — ${coupon.discountPercent}% off</strong><br><small style="color:var(--text-muted);">${coupon.description}. ${eligible ? "Ready to apply." : "Add " + CONFIG.currencySymbol + (coupon.minSpend - subtotal).toLocaleString() + " more to qualify."}</small></span>
+                        </label>`;
+                }).join("")}
+            `;
+
+            options.onchange = (event) => {
+                const radio = event.target.closest('input[name="cartCouponChoice"]');
+                if (!radio) return;
+                if (!radio.value) {
+                    Cart.removeCoupon();
+                    if (message) message.textContent = "Coupon removed.";
+                    renderFullCartPage();
+                    return;
+                }
+                const result = Cart.applyCoupon(radio.value);
+                if (message) {
+                    message.textContent = result.message;
+                    message.style.color = result.success ? "var(--success)" : "var(--danger)";
+                }
+                if (result.success && window.showToast) showToast(result.message, "success");
+                renderFullCartPage();
+            };
+
+            if (message && applied) {
+                message.textContent = "Applied coupon: " + applied.code;
+                message.style.color = "var(--success)";
+            } else if (message) {
+                message.textContent = "Select an eligible coupon to apply your discount.";
+                message.style.color = "var(--text-muted)";
+            }
+        }
+
         function renderFullCartPage() {
             const items = Cart.getItems();
             const calcs = Cart.getCalculations();
@@ -117,6 +169,7 @@
             const summaryContainer = document.getElementById("cartFullSummary");
 
             if (!container || !summaryContainer) return;
+            renderCouponRadioOptions();
 
             if (items.length === 0) {
                 document.getElementById("fullCartContent").innerHTML = `
