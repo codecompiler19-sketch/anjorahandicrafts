@@ -2803,3 +2803,36 @@ input, select, textarea { min-width: 0; max-width: 100%; }
         height: auto !important;
     }
 }
+
+
+/* Critical mobile slideshow fix: let the active slide establish the slider height. */
+.hero-section.hero-image-only .hero-slider {
+    position: relative !important;
+    inset: auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+}
+.hero-section.hero-image-only .hero-slide {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+}
+.hero-section.hero-image-only .hero-slide.active {
+    position: relative !important;
+    inset: auto !important;
+    height: auto !important;
+}
+.hero-section.hero-image-only .hero-image-link {
+    position: relative !important;
+    inset: auto !important;
+    display: block;
+    width: 100%;
+    height: auto !important;
+}
+.hero-section.hero-image-only .hero-banner-image {
+    display: block;
+    width: 100%;
+    height: auto !important;
+    max-width: 100%;
+    object-fit: contain !important;
+}
