@@ -3301,3 +3301,18 @@ input, select, textarea, button { max-width: 100%; }
 .account-form input:focus { outline: 2px solid rgba(209,147,63,.25); border-color: var(--primary, #d1933f); }
 .account-submit { width: 100%; padding: .9rem 1rem; border-radius: 999px; color: #fff; background: var(--primary, #d1933f); font-weight: 800; }
 .account-notice { margin-top: 1rem; padding: .85rem; border-radius: 10px; background: #fff7e9; color: #70542d; font-size: .85rem; line-height: 1.55; }
+
+
+/* Signed-in customer account menu */
+.header-main .container { position: relative; }
+.account-header-btn { display: inline-flex; align-items: center; justify-content: center; gap: .45rem; max-width: min(42vw, 280px); }
+.account-header-btn span { overflow: hidden; text-overflow: ellipsis; }
+.customer-account-menu { position: absolute; z-index: 1200; top: calc(100% + 8px); right: max(1rem, calc((100vw - 1200px) / 2)); min-width: 205px; padding: .45rem; background: #fff; border: 1px solid var(--border-color, #eadfce); border-radius: 12px; box-shadow: 0 12px 32px rgba(30,20,10,.16); }
+.customer-account-menu[hidden] { display: none !important; }
+.customer-account-menu a, .customer-account-menu button { display: block; width: 100%; padding: .8rem .85rem; border-radius: 8px; text-align: left; font: inherit; font-size: .9rem; color: var(--secondary, #2a241e); background: transparent; }
+.customer-account-menu a:hover, .customer-account-menu button:hover, .customer-account-menu a:focus-visible, .customer-account-menu button:focus-visible { background: var(--cream-bg, #faf7f2); color: var(--primary, #d1933f); outline: none; }
+@media (max-width: 900px) {
+  .account-header-btn { display: inline-flex; max-width: 45vw; padding: .5rem .65rem; font-size: .75rem; }
+  .account-header-btn svg { width: 17px; height: 17px; }
+  .customer-account-menu { right: .75rem; top: calc(100% + 5px); }
+}
