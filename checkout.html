@@ -20,6 +20,9 @@
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
                     <span>256-Bit SSL Encrypted</span>
                 </div>
+                    <button id="mobileToggle" class="mobile-toggle" aria-label="Open navigation menu" aria-controls="mobileNavDrawer" aria-expanded="false">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                    </button>
             </div>
         </div>
     </header>
@@ -141,6 +144,19 @@
     </main>
 
     <!-- Footer -->
+    
+    <!-- Shared mobile navigation drawer with expandable accordion sections -->
+    <div id="mobileNavDrawer" class="cart-drawer mobile-nav-drawer" style="right:auto; left:0; transform:translateX(-100%);">
+        <div class="cart-header"><h3>Anjora Handicrafts</h3><button id="mobileNavClose" class="cart-close-btn" aria-label="Close navigation">✕</button></div>
+        <div class="mobile-nav-content">
+            <a class="mobile-nav-link" href="index.html">Home</a>
+            <details class="mobile-nav-accordion" open><summary>Shop</summary><div class="mobile-nav-submenu"><a href="shop.html">All Products</a><a href="shop.html?category=handmade-accessories">Handmade Accessories</a></div></details>
+            <details class="mobile-nav-accordion"><summary>My Account & Shopping</summary><div class="mobile-nav-submenu"><a href="wishlist.html">Wishlist</a><a href="cart.html">Shopping Cart</a><a href="checkout.html">Checkout</a></div></details>
+            <details class="mobile-nav-accordion"><summary>About Anjora</summary><div class="mobile-nav-submenu"><a href="about.html">About Us</a><a href="contact.html">Contact Us</a></div></details>
+            <details class="mobile-nav-accordion"><summary>Policies</summary><div class="mobile-nav-submenu"><a href="refund-policy.html">Shipping & Refund Policy</a><a href="privacy-policy.html">Privacy Policy</a><a href="terms.html">Terms & Conditions</a></div></details>
+        </div>
+    </div>
+
     <footer class="site-footer" style="padding-top: 2rem; margin-top: 4rem;">
         <div class="container">
             <div class="footer-bottom">
