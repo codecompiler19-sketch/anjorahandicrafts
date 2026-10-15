@@ -247,19 +247,20 @@
     <script>
       if (window.location.search) window.history.replaceState({}, document.title, window.location.pathname + window.location.hash);
       window.__firebaseAccountReady = false;
+      window.__firebaseAccountModuleError = null;
       document.getElementById("accountForm").addEventListener("submit", function(event) {
         if (!window.__firebaseAccountReady) {
           event.preventDefault();
           const notice = document.getElementById("accountNotice");
-          notice.textContent = "Firebase did not finish loading. Refresh the page and try again. If this continues, open the browser console for the Firebase error.";
+          notice.textContent = window.__firebaseAccountModuleError || "Firebase is still loading. Refresh the page and try again.";
           notice.style.background = "#fff0ed"; notice.style.color = "#8c2f20";
         }
       });
     </script>
     <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
-      import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, signOut, onAuthStateChanged, updateProfile } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
-      import { getFirestore, doc, getDoc, setDoc, collection, getDocs, query, orderBy, limit, where } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+      import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, signOut, onAuthStateChanged, updateProfile } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+      import { getFirestore, doc, getDoc, setDoc, collection, getDocs, query, orderBy, limit, where } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
       const firebaseConfig = {
         apiKey: "AIzaSyAIg8X7TGrRmhed31LOZwqkRAK2n8SVjlI",
@@ -271,10 +272,19 @@
         measurementId: "G-WC6FWG80BB"
       };
 
-      const app = initializeApp(firebaseConfig);
-      const auth = getAuth(app);
-      const db = getFirestore(app);
-      window.__firebaseAccountReady = true;
+      let app, auth, db;
+      try {
+        app = initializeApp(firebaseConfig);
+        auth = getAuth(app);
+        db = getFirestore(app);
+        window.__firebaseAccountReady = true;
+      } catch (startupError) {
+        console.error("Anjora Firebase initialization failed:", startupError);
+        window.__firebaseAccountModuleError = "Firebase initialization failed (" + (startupError.code || startupError.message || "unknown error") + "). Please check the browser console.";
+        const notice = document.getElementById("accountNotice");
+        if (notice) { notice.textContent = window.__firebaseAccountModuleError; notice.style.background = "#fff0ed"; notice.style.color = "#8c2f20"; }
+        throw startupError;
+      }
       const $ = id => document.getElementById(id);
       let mode = "login";
       let currentUser = null;
@@ -407,6 +417,19 @@
         }
       });
       $("currentYear").textContent = new Date().getFullYear();
+    </script>
+    <script type="module">
+      // Independent diagnostic import so failures are visible even if the main account module cannot load.
+      try {
+        await import("https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js");
+      } catch (loadError) {
+        console.error("Anjora Firebase SDK failed to load:", loadError);
+        const notice = document.getElementById("accountNotice");
+        if (notice) {
+          notice.textContent = "Firebase SDK could not load. Check your internet connection, browser extensions, and Console errors, then refresh.";
+          notice.style.background = "#fff0ed"; notice.style.color = "#8c2f20";
+        }
+      }
     </script>
 </body>
 </html>
