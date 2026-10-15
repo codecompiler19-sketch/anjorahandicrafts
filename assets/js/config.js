@@ -33,7 +33,7 @@ const CONFIG = {
 
     // Available Discount Coupons
     coupons: [
-        { code: "WELCOME10", discountPercent: 10, minSpend: 499, description: "10% off on your first order" },
+        { code: "WELCOME10", discountPercent: 10, minSpend: 999, description: "10% off orders of ₹999 or more" },
         { code: "HERITAGE15", discountPercent: 15, minSpend: 1999, description: "15% off on orders above ₹1,999" },
         { code: "ANJORA20", discountPercent: 20, minSpend: 3999, description: "20% off on royal master collection" }
     ],
