@@ -2477,3 +2477,19 @@ input, select, textarea { min-width: 0; max-width: 100%; }
 .mobile-toggle { display:inline-flex; align-items:center; justify-content:center; min-width:44px; min-height:44px; border-radius:8px; color:var(--secondary); }
 .mobile-toggle:focus-visible, .mobile-nav-accordion summary:focus-visible, .mobile-nav-link:focus-visible { outline:2px solid var(--primary); outline-offset:3px; }
 @media (max-width: 800px) { .mobile-nav-drawer { display:block; } }
+
+
+/* Ensure the shared mobile accordion drawer opens on every page, including refund policy */
+.mobile-nav-drawer {
+    visibility: visible;
+    transition: transform 0.3s ease-in-out;
+}
+.mobile-nav-drawer.active {
+    transform: translateX(0) !important;
+}
+.mobile-nav-drawer:not(.active) {
+    pointer-events: none;
+}
+.mobile-nav-drawer.active {
+    pointer-events: auto;
+}
