@@ -2836,3 +2836,63 @@ input, select, textarea { min-width: 0; max-width: 100%; }
     max-width: 100%;
     object-fit: contain !important;
 }
+
+
+/* Responsive handmade crochet gift set promotion */
+.gift-set-promo {
+    padding: clamp(2rem, 5vw, 4.5rem) 0;
+    background: linear-gradient(135deg, #fffaf6 0%, #fbf0f2 100%);
+}
+.gift-set-promo-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    overflow: hidden;
+    padding: clamp(1rem, 3vw, 2rem);
+    border: 1px solid rgba(152, 87, 106, .14);
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 12px 34px rgba(70, 43, 51, .07);
+}
+.gift-set-promo-image-wrap {
+    min-width: 0;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #fffaf6;
+}
+.gift-set-promo-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 520px;
+    object-fit: contain;
+}
+.gift-set-promo-content { min-width: 0; padding: clamp(.25rem, 1.5vw, 1.25rem); }
+.gift-set-promo-content h2 {
+    margin: .5rem 0 1rem;
+    color: var(--secondary);
+    font-size: clamp(1.65rem, 3.2vw, 2.7rem);
+    line-height: 1.18;
+    overflow-wrap: anywhere;
+}
+.gift-set-promo-content p {
+    margin: 0 0 1.5rem;
+    color: var(--text-muted);
+    font-size: clamp(.95rem, 1.4vw, 1.08rem);
+    line-height: 1.8;
+}
+.gift-set-promo-content .btn { min-height: 46px; }
+@media (max-width: 760px) {
+    .gift-set-promo { padding: 2rem 0; }
+    .gift-set-promo-card {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.25rem;
+        padding: .85rem;
+        border-radius: 16px;
+    }
+    .gift-set-promo-image { max-height: 420px; }
+    .gift-set-promo-content { padding: .5rem .35rem .75rem; }
+    .gift-set-promo-content h2 { font-size: clamp(1.55rem, 7vw, 2.1rem); }
+    .gift-set-promo-content .btn { width: 100%; justify-content: center; }
+}
