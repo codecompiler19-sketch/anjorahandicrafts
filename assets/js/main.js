@@ -263,7 +263,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 searchDropdown.innerHTML = `<div style="padding: 1.25rem; text-align: center; color: var(--text-muted); font-size: 0.9rem;">No handcrafted treasures found for "${e.target.value}".</div>`;
             } else {
                 searchDropdown.innerHTML = matches.map(m => `
-                    <a href="product.html?id=${m.id}" class="search-result-item">
+                    <a href="${m.slug}.html" class="search-result-item">
                         <img src="${m.images[0]}" alt="${m.name}" class="search-result-thumb">
                         <div class="search-result-info">
                             <div class="search-result-title">${m.name}</div>
