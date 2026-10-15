@@ -58,7 +58,7 @@
             <div>
                 <!-- Coupon Box -->
                 <div style="background: #fff; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.5rem; margin-bottom: 1.5rem;">
-                    <h3 style="font-size: 1rem; margin-bottom: 0.75rem; color: var(--secondary);">Have an Artisan Coupon?</h3>
+                    <h3 style="font-size: 1rem; margin-bottom: 0.75rem; color: var(--secondary);">Have a Coupon?</h3>
                     <form id="cartCouponForm" style="display: flex; gap: 0.5rem;">
                         <input type="text" id="cartCouponInput" class="form-control" placeholder="e.g. WELCOME10" style="text-transform: uppercase;">
                         <button type="submit" class="btn btn-primary btn-sm">Apply</button>
@@ -139,7 +139,7 @@
                     <img src="${item.image}" alt="${item.name}" style="width: 80px; height: 80px; object-fit: cover; border-radius: var(--radius-sm);">
                     <div style="flex: 1;">
                         <h4 style="font-size: 1rem; margin-bottom: 0.25rem;"><a href="product.html?id=${item.id}" style="color: var(--secondary);">${item.name}</a></h4>
-                        <div style="font-size: 0.8rem; color: var(--primary); margin-bottom: 0.5rem;">Artisan: ${item.artisanName}</div>
+                        <div style="font-size: 0.8rem; color: var(--primary); margin-bottom: 0.5rem;">Maker: ${item.artisanName}</div>
                         <div style="font-size: 0.85rem; color: var(--text-muted);">Unit Price: ${CONFIG.currencySymbol}${item.price.toLocaleString()}</div>
                     </div>
                     <div class="qty-control" style="transform: scale(1.1);">
