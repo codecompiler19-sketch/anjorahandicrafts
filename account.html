@@ -6,77 +6,202 @@
     <meta name="description" content="Sign in or create your Anjora Handicrafts customer account.">
     <title>Login / Register | Anjora Handicrafts</title>
     <link rel="icon" href="assets/images/anjorahandicrafts-logo.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="assets/css/style.css?v=20261016-account-access">
+    <link rel="stylesheet" href="assets/css/style.css?v=20261016-firebase-account">
 </head>
 <body>
     <header class="site-header">
         <div class="header-main">
             <div class="container">
                 <a href="index.html" class="logo" aria-label="Anjora Handicrafts home"><img src="assets/images/anjorahandicrafts-logo.svg" alt="Anjora Handicrafts" class="site-logo-img"></a>
-                <div class="header-actions">
-                    <a href="index.html" class="account-header-btn">Continue shopping</a>
-                </div>
+                <div class="header-actions"><a href="index.html" class="account-header-btn">Continue shopping</a></div>
             </div>
         </div>
     </header>
     <main class="account-page">
         <section class="account-card" aria-labelledby="accountTitle">
             <h1 id="accountTitle">Welcome to Anjora</h1>
-            <p class="account-intro">Sign in or create an account to keep your orders and details together.</p>
-            <div class="account-tabs" role="tablist" aria-label="Account access">
-                <button type="button" class="active" id="loginTab" role="tab" aria-selected="true">Login</button>
-                <button type="button" id="registerTab" role="tab" aria-selected="false">Register</button>
+            <p class="account-intro" id="accountIntro">Sign in or create an account to keep your orders and details together.</p>
+            <div id="accountSignedIn" hidden>
+                <p id="signedInMessage"></p>
+                <div class="account-form">
+                    <label>Full name<input id="profileName" type="text" autocomplete="name" placeholder="Your full name"></label>
+                    <label>Phone number (optional)<input id="profilePhone" type="tel" autocomplete="tel" placeholder="+91..."></label>
+                    <label>Delivery address (optional)<input id="profileAddress" type="text" autocomplete="street-address" placeholder="Street, area, city, PIN code"></label>
+                    <button class="account-submit" id="saveProfile" type="button">Save profile</button>
+                    <button class="account-submit" id="logoutButton" type="button" style="background:#55483b">Log out</button>
+                </div>
+                <h2 style="margin-top:2rem">My orders</h2>
+                <div id="orderList"><p>Loading your orders…</p></div>
             </div>
-            <form class="account-form" id="accountForm">
-                <label id="nameField" hidden>Full name
-                    <input type="text" name="name" autocomplete="name" placeholder="Your full name">
-                </label>
-                <label>Email address
-                    <input type="email" name="email" autocomplete="email" placeholder="you@example.com" required>
-                </label>
-                <label>Password
-                    <input type="password" name="password" autocomplete="current-password" minlength="6" placeholder="At least 6 characters" required>
-                </label>
-                <button class="account-submit" id="accountSubmit" type="submit">Login</button>
-            </form>
-            <p class="account-notice" id="accountNotice">Account sign-in and registration are not connected yet. Once Firebase setup is provided, this page can securely handle authentication and customer order records.</p>
+            <div id="accountAccess">
+                <div class="account-tabs" role="tablist" aria-label="Account access">
+                    <button type="button" class="active" id="loginTab" role="tab" aria-selected="true">Login</button>
+                    <button type="button" id="registerTab" role="tab" aria-selected="false">Register</button>
+                </div>
+                <form class="account-form" id="accountForm">
+                    <label id="nameField" hidden>Full name<input type="text" name="name" autocomplete="name" placeholder="Your full name"></label>
+                    <label>Email address<input type="email" name="email" autocomplete="email" placeholder="you@example.com" required></label>
+                    <label>Password<input type="password" name="password" autocomplete="current-password" minlength="6" placeholder="At least 6 characters" required></label>
+                    <button class="account-submit" id="accountSubmit" type="submit">Login</button>
+                    <button id="resetPassword" type="button" style="color:#8a5b22;text-decoration:underline">Forgot password?</button>
+                </form>
+            </div>
+            <p class="account-notice" id="accountNotice" role="status" aria-live="polite">Connecting securely to Firebase…</p>
         </section>
     </main>
-    <footer class="site-footer">
-        <div class="container"><p>&copy; <span id="currentYear">2026</span> Anjora Handicrafts. <a href="privacy-policy.html">Privacy Policy</a></p></div>
-    </footer>
-    <script src="assets/js/config.js"></script>
+    <footer class="site-footer"><div class="container"><p>&copy; <span id="currentYear">2026</span> Anjora Handicrafts. <a href="privacy-policy.html">Privacy Policy</a></p></div></footer>
     <script src="assets/js/main.js?v=20261016-social-sidebar-preview"></script>
-    <script>
-    (() => {
-        const loginTab = document.getElementById('loginTab');
-        const registerTab = document.getElementById('registerTab');
-        const nameField = document.getElementById('nameField');
-        const password = document.querySelector('input[name="password"]');
-        const submit = document.getElementById('accountSubmit');
-        const notice = document.getElementById('accountNotice');
-        let mode = 'login';
-        function setMode(nextMode) {
-            mode = nextMode;
-            const registering = mode === 'register';
-            nameField.hidden = !registering;
-            nameField.querySelector('input').required = registering;
-            password.autocomplete = registering ? 'new-password' : 'current-password';
-            submit.textContent = registering ? 'Create account' : 'Login';
-            loginTab.classList.toggle('active', !registering);
-            registerTab.classList.toggle('active', registering);
-            loginTab.setAttribute('aria-selected', String(!registering));
-            registerTab.setAttribute('aria-selected', String(registering));
-            notice.textContent = 'Account sign-in and registration are not connected yet. Once Firebase setup is provided, this page can securely handle authentication and customer order records.';
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+      import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, signOut, onAuthStateChanged, updateProfile } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+      import { getFirestore, doc, getDoc, setDoc, collection, getDocs, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyAIg8X7TGrRmhed31LOZwqkRAK2n8SVjlI",
+        authDomain: "anjanahandicrafts-6e4ce.firebaseapp.com",
+        projectId: "anjanahandicrafts-6e4ce",
+        storageBucket: "anjanahandicrafts-6e4ce.firebasestorage.app",
+        messagingSenderId: "889895915215",
+        appId: "1:889895915215:web:587a656ab791a3994bf1ba",
+        measurementId: "G-WC6FWG80BB"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const db = getFirestore(app);
+      const $ = id => document.getElementById(id);
+      let mode = "login";
+      let currentUser = null;
+
+      function message(text, error = false) {
+        $("accountNotice").textContent = text;
+        $("accountNotice").style.background = error ? "#fff0ed" : "#fff7e9";
+        $("accountNotice").style.color = error ? "#8c2f20" : "#70542d";
+      }
+      function friendlyError(error) {
+        const map = {
+          "auth/email-already-in-use": "An account already exists with this email. Please log in instead.",
+          "auth/invalid-email": "Please enter a valid email address.",
+          "auth/weak-password": "Please choose a stronger password with at least 6 characters.",
+          "auth/invalid-credential": "Email or password is incorrect.",
+          "auth/user-not-found": "No account was found for this email. Please register first.",
+          "auth/too-many-requests": "Too many attempts. Please wait a while and try again.",
+          "auth/network-request-failed": "Network issue. Check your internet connection and try again.",
+          "auth/operation-not-allowed": "Email/password login is not enabled yet in Firebase Authentication."
+        };
+        return map[error.code] || "Something went wrong. Please check Firebase setup and try again.";
+      }
+      function setMode(next) {
+        mode = next;
+        const registering = mode === "register";
+        $("nameField").hidden = !registering;
+        $("nameField").querySelector("input").required = registering;
+        $("accountSubmit").textContent = registering ? "Create account" : "Login";
+        $("loginTab").classList.toggle("active", !registering);
+        $("registerTab").classList.toggle("active", registering);
+        $("loginTab").setAttribute("aria-selected", String(!registering));
+        $("registerTab").setAttribute("aria-selected", String(registering));
+        $("resetPassword").hidden = registering;
+        $("accountForm").querySelector('input[name="password"]').autocomplete = registering ? "new-password" : "current-password";
+      }
+      $("loginTab").addEventListener("click", () => setMode("login"));
+      $("registerTab").addEventListener("click", () => setMode("register"));
+
+      $("accountForm").addEventListener("submit", async event => {
+        event.preventDefault();
+        const form = new FormData(event.currentTarget);
+        const email = String(form.get("email") || "").trim();
+        const password = String(form.get("password") || "");
+        const name = String(form.get("name") || "").trim();
+        $("accountSubmit").disabled = true;
+        try {
+          if (mode === "register") {
+            const credential = await createUserWithEmailAndPassword(auth, email, password);
+            if (name) await updateProfile(credential.user, { displayName: name });
+            await setDoc(doc(db, "users", credential.user.uid), {
+              uid: credential.user.uid, displayName: name, email: credential.user.email,
+              phone: "", address: "", createdAt: new Date().toISOString(), updatedAt: new Date().toISOString()
+            }, { merge: true });
+            message("Your account has been created successfully.");
+          } else {
+            await signInWithEmailAndPassword(auth, email, password);
+            message("You are now logged in.");
+          }
+        } catch (error) {
+          message(friendlyError(error), true);
+        } finally {
+          $("accountSubmit").disabled = false;
         }
-        loginTab.addEventListener('click', () => setMode('login'));
-        registerTab.addEventListener('click', () => setMode('register'));
-        document.getElementById('accountForm').addEventListener('submit', event => {
-            event.preventDefault();
-            notice.textContent = 'Your form is ready, but authentication has not been activated. Please connect Firebase before using real customer accounts.';
-        });
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-    })();
+      });
+
+      $("resetPassword").addEventListener("click", async () => {
+        const email = $("accountForm").querySelector('input[name="email"]').value.trim();
+        if (!email) { message("Enter your email address first, then select Forgot password.", true); return; }
+        try {
+          await sendPasswordResetEmail(auth, email);
+          message("If an account exists for that email, Firebase will send a password reset email.");
+        } catch (error) { message(friendlyError(error), true); }
+      });
+
+      async function loadProfile(user) {
+        const ref = doc(db, "users", user.uid);
+        const snap = await getDoc(ref);
+        const profile = snap.exists() ? snap.data() : {};
+        $("profileName").value = profile.displayName || user.displayName || "";
+        $("profilePhone").value = profile.phone || "";
+        $("profileAddress").value = profile.address || "";
+      }
+      $("saveProfile").addEventListener("click", async () => {
+        if (!currentUser) return;
+        try {
+          const displayName = $("profileName").value.trim();
+          await setDoc(doc(db, "users", currentUser.uid), {
+            uid: currentUser.uid, email: currentUser.email,
+            displayName, phone: $("profilePhone").value.trim(),
+            address: $("profileAddress").value.trim(), updatedAt: new Date().toISOString()
+          }, { merge: true });
+          if (displayName && displayName !== currentUser.displayName) await updateProfile(currentUser, { displayName });
+          message("Your profile has been saved.");
+        } catch (error) { message(friendlyError(error), true); }
+      });
+      $("logoutButton").addEventListener("click", async () => {
+        try { await signOut(auth); message("You have been logged out."); }
+        catch (error) { message(friendlyError(error), true); }
+      });
+
+      async function loadOrders(user) {
+        const target = $("orderList");
+        target.textContent = "Loading your orders…";
+        try {
+          const ordersQuery = query(collection(db, "orders"), orderBy("createdAt", "desc"), limit(25));
+          const snapshots = await getDocs(ordersQuery);
+          const orders = snapshots.docs.map(item => ({ id: item.id, ...item.data() }))
+            .filter(order => order.userId === user.uid || order.customerUid === user.uid);
+          if (!orders.length) {
+            target.textContent = "No orders are linked to this account yet.";
+            return;
+          }
+          target.innerHTML = orders.map(order => {
+            const safe = value => String(value ?? "").replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+            return '<article style="padding:1rem 0;border-bottom:1px solid #eadfce"><strong>Order ' + safe(order.orderNumber || order.id) + '</strong><p>Status: ' + safe(order.status || "Processing") + '</p><p>Total: ' + safe(order.currency || "INR") + " " + safe(order.total ?? order.amount ?? "—") + '</p></article>";
+          }).join("");
+        } catch (error) {
+          target.textContent = "Order history isn't available yet. Firestore rules and order integration must be configured.";
+        }
+      }
+      onAuthStateChanged(auth, async user => {
+        currentUser = user;
+        $("accountAccess").hidden = !!user;
+        $("accountSignedIn").hidden = !user;
+        $("accountTitle").textContent = user ? "Your account" : "Welcome to Anjora";
+        $("accountIntro").textContent = user ? (user.email || "You are signed in.") : "Sign in or create an account to keep your orders and details together.";
+        if (user) {
+          $("signedInMessage").textContent = "Signed in as " + (user.email || "");
+          try { await loadProfile(user); } catch (error) { message("Signed in, but profile storage is not ready. Check Firestore setup and rules.", true); }
+          await loadOrders(user);
+        }
+      });
+      $("currentYear").textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
