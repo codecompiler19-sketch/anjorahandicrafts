@@ -2725,3 +2725,20 @@ input, select, textarea { min-width: 0; max-width: 100%; }
 @media (prefers-reduced-motion: reduce) {
     .hero-image-only .hero-slide { transition: none; }
 }
+
+/* Full-bleed homepage slideshow: remove side gutters and gray base */
+.hero-section.hero-image-only {
+    width: 100vw;
+    max-width: none;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+}
+.hero-section.hero-image-only .hero-banner-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
