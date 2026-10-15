@@ -2121,3 +2121,112 @@ h1, h2, h3, h4, h5, h6 {
     .hero-buttons { flex-direction: column; }
     .hero-buttons .btn { width: 100%; }
 }
+
+/* ==========================================================================
+   Responsive refinement — mobile, tablet, and desktop
+   ========================================================================== */
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body { min-width: 320px; overflow-x: hidden; }
+img, video, iframe { max-width: 100%; }
+img { height: auto; }
+button, input, select, textarea { font: inherit; }
+a, button { -webkit-tap-highlight-color: transparent; }
+.container { width: min(100% - 2.5rem, 1200px); margin-inline: auto; }
+section { scroll-margin-top: 90px; }
+input, select, textarea { max-width: 100%; }
+button, .btn, .action-btn, .social-btn { touch-action: manipulation; }
+.hero-slide-bg { background-position: center; background-size: cover; }
+.product-card, .category-card, .testimonial-card { min-width: 0; }
+.product-card img, .category-card img { display: block; width: 100%; object-fit: cover; }
+.footer-grid { grid-template-columns: minmax(0, 2fr) repeat(2, minmax(0, 1fr)); }
+.footer-bottom { gap: 1rem; flex-wrap: wrap; }
+.payment-methods { display: flex; gap: .5rem; flex-wrap: wrap; }
+
+@media (max-width: 1024px) {
+  .container { width: min(100% - 2rem, 900px); }
+  .artisan-grid { gap: 2.25rem; }
+  .artisan-content h2 { font-size: clamp(1.8rem, 4vw, 2.35rem); }
+  .testimonials-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
+  .header-main .container { gap: 1rem; }
+}
+
+@media (max-width: 768px) {
+  .container { width: calc(100% - 2rem); }
+  .top-bar .container { display: flex; flex-direction: column; gap: .45rem; text-align: center; padding-block: .55rem; }
+  .top-bar-left, .top-bar-right { justify-content: center; flex-wrap: wrap; }
+  .top-bar-promo { font-size: .78rem; line-height: 1.45; }
+  .header-main .container { display: flex; flex-wrap: wrap; justify-content: space-between; }
+  .logo { min-width: 0; }
+  .logo-brand { font-size: 1.15rem; }
+  .header-search { order: 3; width: 100%; max-width: none; margin: .6rem 0 0; }
+  .header-actions { gap: .5rem; }
+  .header-actions .action-btn { min-height: 42px; }
+  .header-nav { display: none; }
+  .hero-section { min-height: 470px; }
+  .hero-content { width: 100%; max-width: 100%; padding: 3.5rem 0; }
+  .hero-title { font-size: clamp(2rem, 8vw, 3rem); line-height: 1.12; overflow-wrap: anywhere; }
+  .hero-description { font-size: .98rem; line-height: 1.65; }
+  .hero-buttons { display: flex; flex-wrap: wrap; gap: .75rem; }
+  .hero-buttons .btn { width: 100%; justify-content: center; }
+  .trust-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+  .categories-grid, .products-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+  .section-header { padding-inline: .25rem; }
+  .section-title { font-size: clamp(1.55rem, 5vw, 2.2rem); line-height: 1.2; }
+  .section-desc { font-size: .92rem; }
+  .artisan-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .artisan-image-frame img { width: 100%; max-height: 420px; object-fit: cover; }
+  .artisan-content h2 { font-size: clamp(1.8rem, 6vw, 2.4rem); }
+  .artisan-pillars { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .newsletter-form { width: 100%; border-radius: var(--radius-md); flex-direction: column; gap: .5rem; padding: .65rem; }
+  .newsletter-input { width: 100%; min-height: 46px; }
+  .newsletter-form .btn { width: 100%; min-height: 46px; }
+  .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.75rem 1.25rem; }
+  .footer-col:first-child { grid-column: 1 / -1; }
+  .footer-bottom { align-items: flex-start; flex-direction: column; }
+  .payment-methods { gap: .4rem; }
+  .cart-drawer { width: min(100%, 420px); }
+  .form-control { min-width: 0; }
+}
+
+@media (max-width: 480px) {
+  .container { width: calc(100% - 1.25rem); }
+  .top-bar-left { gap: .4rem .75rem; }
+  .top-bar-item { font-size: .72rem; }
+  .top-bar-right { font-size: .78rem; }
+  .header-main { padding-block: .7rem; }
+  .logo-icon { width: 36px; height: 36px; }
+  .logo-tagline { font-size: .65rem; }
+  .header-actions { gap: .25rem; }
+  .header-actions .action-btn { padding: .45rem; }
+  .header-actions .action-btn span:not(.action-badge) { display: none; }
+  .mobile-toggle { padding: .4rem; }
+  .hero-section { min-height: 440px; }
+  .hero-content { padding: 2.75rem 0; }
+  .hero-badge { font-size: .72rem; }
+  .hero-title { font-size: clamp(1.8rem, 9vw, 2.45rem); }
+  .hero-description { font-size: .9rem; }
+  .trust-grid { grid-template-columns: 1fr; }
+  .trust-card { gap: .8rem; }
+  .categories-grid, .products-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; }
+  .product-info { padding: .8rem; }
+  .product-name { font-size: .9rem; height: auto; min-height: 2.4rem; }
+  .current-price { font-size: 1rem; }
+  .product-price-row { flex-wrap: wrap; gap: .35rem; }
+  .btn-add-cart { font-size: .7rem; padding: .65rem .35rem; }
+  .section-header { margin-bottom: 1.5rem; }
+  .artisan-badge-float { right: 10px; bottom: -15px; padding: .9rem 1rem; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-col:first-child { grid-column: auto; }
+  .footer-col h4 { margin-bottom: 1rem; }
+  .payment-badge { font-size: .7rem; }
+  .cart-header, .cart-footer { padding: 1rem; }
+  .cart-items-body { padding: .75rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
