@@ -103,7 +103,7 @@ window.renderProductCard = function(product) {
             </div>
 
             <div class="product-thumb-wrap">
-                <a href="${product.id === 'prod-013' ? 'hand-made-hair-band-crochet-sunflower.html' : 'product.html?id=' + product.id}">
+                <a href="${product.slug}.html">
                     <img src="${encodeURI(product.images[0])}" alt="${product.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=600&q=80'">
                 </a>
                 <div class="product-quick-actions">
@@ -135,7 +135,7 @@ window.renderProductCard = function(product) {
                 </div>
 
                 <h3 class="product-name">
-                    <a href="${product.id === 'prod-013' ? 'hand-made-hair-band-crochet-sunflower.html' : 'product.html?id=' + product.id}">${product.name}</a>
+                    <a href="${product.slug}.html">${product.name}</a>
                 </h3>
 
                 <div class="product-rating">
