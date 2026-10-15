@@ -291,12 +291,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (mobileToggle && mobileDrawer) {
         mobileToggle.addEventListener("click", () => {
             mobileDrawer.classList.add("active");
+            mobileToggle.setAttribute("aria-expanded", "true");
             document.body.style.overflow = "hidden";
         });
     }
     if (mobileClose && mobileDrawer) {
         mobileClose.addEventListener("click", () => {
             mobileDrawer.classList.remove("active");
+            if (mobileToggle) mobileToggle.setAttribute("aria-expanded", "false");
             document.body.style.overflow = "";
         });
     }
