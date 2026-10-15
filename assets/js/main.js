@@ -210,7 +210,7 @@ window.openQuickView = function(productId) {
                         <button class="btn btn-primary" style="flex: 1;" onclick="Cart.addItem('${product.id}'); closeQuickView();">
                             Add to Cart
                         </button>
-                        <a href="${product.id === 'prod-013' ? 'hand-made-hair-band-crochet-sunflower.html' : 'product.html?id=' + product.id}" class="btn btn-outline" style="padding: 0.85rem 1.25rem;">
+                        <a href="${product.slug}.html" class="btn btn-outline" style="padding: 0.85rem 1.25rem;">
                             View Details
                         </a>
                     </div>
