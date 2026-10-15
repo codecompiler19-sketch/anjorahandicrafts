@@ -168,8 +168,8 @@
                 if (paidHeading) paidHeading.textContent = "Thank You for Placing Your Order!";
                 const intro = paidHeading && paidHeading.nextElementSibling;
                 if (intro) intro.textContent = "Your order has been recorded. Please complete payment using the official Razorpay link when it is available.";
-                const totalLabel = document.querySelector("#receiptTotals span");
-                if (totalLabel) totalLabel.textContent = "Total to Pay";
+                const totalLabels = document.querySelectorAll("#receiptTotals span");
+                if (totalLabels.length >= 2) totalLabels[totalLabels.length - 2].textContent = "Total to Pay";
             }
             document.getElementById("receiptOrderDate").textContent = new Date(order.orderDate).toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" });
 
