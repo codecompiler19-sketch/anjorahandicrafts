@@ -113,8 +113,11 @@
         <div id="productMainContainer" class="product-detail-layout">
             <!-- Left: Gallery -->
             <div class="product-gallery">
-                <div class="gallery-main">
+                <div class="gallery-main" aria-label="Product image slideshow">
                     <img id="mainGalleryImg" src="" alt="Handicraft Product">
+                    <button type="button" class="gallery-arrow gallery-arrow-prev" id="galleryPrev" aria-label="Previous product image">‹</button>
+                    <button type="button" class="gallery-arrow gallery-arrow-next" id="galleryNext" aria-label="Next product image">›</button>
+                    <span class="gallery-slide-count" id="gallerySlideCount" aria-live="polite">1 / 1</span>
                 </div>
                 <div class="gallery-thumbs" id="galleryThumbsList">
                     <!-- Thumbnails injected by JS -->
@@ -305,6 +308,33 @@
 
     <script>
         let currentProduct = null;
+        let galleryImages = [];
+        let galleryIndex = 0;
+        let galleryTimer = null;
+
+        function showGalleryImage(index) {
+            if (!galleryImages.length) return;
+            galleryIndex = (index + galleryImages.length) % galleryImages.length;
+            const mainImg = document.getElementById("mainGalleryImg");
+            mainImg.src = encodeURI(galleryImages[galleryIndex]);
+            mainImg.alt = (currentProduct?.imageAltText || currentProduct?.name || "Handicraft product") + " — image " + (galleryIndex + 1);
+            document.querySelectorAll(".gallery-thumb").forEach((thumb, idx) => {
+                thumb.classList.toggle("active", idx === galleryIndex);
+                if (idx === galleryIndex) thumb.setAttribute("aria-current", "true");
+                else thumb.removeAttribute("aria-current");
+            });
+            const counter = document.getElementById("gallerySlideCount");
+            if (counter) counter.textContent = (galleryIndex + 1) + " / " + galleryImages.length;
+            const controlsVisible = galleryImages.length > 1;
+            document.querySelectorAll(".gallery-arrow").forEach(button => button.hidden = !controlsVisible);
+        }
+
+        function startGallerySlideshow() {
+            if (galleryTimer) window.clearInterval(galleryTimer);
+            if (galleryImages.length > 1) {
+                galleryTimer = window.setInterval(() => showGalleryImage(galleryIndex + 1), 4500);
+            }
+        }
 
         function incrementQty() {
             const input = document.getElementById("detailQtyInput");
@@ -381,18 +411,23 @@
                 document.getElementById("specWeight").textContent = currentProduct.weight;
                 document.getElementById("specRegion").textContent = currentProduct.artisan.region;
 
-                // Main Image
-                const mainImg = document.getElementById("mainGalleryImg");
-                mainImg.src = encodeURI(currentProduct.images[0]);
-                mainImg.alt = currentProduct.imageAltText || currentProduct.name;
-
-                // Thumbs
+                // Main image and responsive thumbnail gallery / slideshow
+                galleryImages = [...new Set((currentProduct.images || []).filter(Boolean))];
                 const thumbsList = document.getElementById("galleryThumbsList");
-                thumbsList.innerHTML = currentProduct.images.map((img, idx) => `
-                    <div class="gallery-thumb ${idx === 0 ? 'active' : ''}" onclick="selectGalleryImg('${img}', this)">
-                        <img src="${img}" alt="${currentProduct.imageAltText || currentProduct.name} view ${idx + 1}">
-                    </div>
+                thumbsList.innerHTML = galleryImages.map((img, idx) => `
+                    <button type="button" class="gallery-thumb ${idx === 0 ? 'active' : ''}" onclick="selectGalleryImg(${idx}, this)" aria-label="View product image ${idx + 1}" aria-pressed="${idx === 0}">
+                        <img src="${encodeURI(img)}" alt="${currentProduct.imageAltText || currentProduct.name} — view ${idx + 1}" loading="lazy">
+                    </button>
                 `).join("");
+                showGalleryImage(0);
+                startGallerySlideshow();
+                document.getElementById("galleryPrev").onclick = () => { showGalleryImage(galleryIndex - 1); startGallerySlideshow(); };
+                document.getElementById("galleryNext").onclick = () => { showGalleryImage(galleryIndex + 1); startGallerySlideshow(); };
+                const gallery = document.querySelector(".product-gallery");
+                gallery.addEventListener("mouseenter", () => { if (galleryTimer) window.clearInterval(galleryTimer); });
+                gallery.addEventListener("mouseleave", startGallerySlideshow);
+                gallery.addEventListener("focusin", () => { if (galleryTimer) window.clearInterval(galleryTimer); });
+                gallery.addEventListener("focusout", startGallerySlideshow);
 
                 // Related Products
                 const related = PRODUCTS.filter(p => p.id !== currentProduct.id && p.category === currentProduct.category).slice(0, 4);
@@ -403,10 +438,10 @@
             }
         });
 
-        function selectGalleryImg(url, el) {
-            document.getElementById("mainGalleryImg").src = url;
-            document.querySelectorAll(".gallery-thumb").forEach(t => t.classList.remove("active"));
-            el.classList.add("active");
+        function selectGalleryImg(index, el) {
+            showGalleryImage(index);
+            document.querySelectorAll(".gallery-thumb").forEach((thumb, idx) => thumb.setAttribute("aria-pressed", String(idx === galleryIndex)));
+            startGallerySlideshow();
         }
     </script>
     <script type="module" src="assets/js/auth-menu.js?v=20261016-customer-menu"></script>
