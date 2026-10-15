@@ -378,24 +378,49 @@ function initAnjoraSocialSidebar() {
 
     const dock = document.createElement("aside");
     dock.id = "anjoraSocialSidebar";
-    dock.className = "anjora-social-sidebar";
+    // Start hidden so the sidebar never flashes open during page rendering.
+    dock.className = "anjora-social-sidebar is-collapsed";
     dock.setAttribute("aria-label", "Anjora social media links");
     dock.innerHTML = `
         <div class="anjora-social-rail" id="anjoraSocialRail">
             ${socials.map(s => `<a class="anjora-social-link social-${s.name.toLowerCase()}" href="${s.url}" target="_blank" rel="noopener noreferrer" aria-label="${s.label}" title="${s.name}"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">${s.icon}</svg><span class="anjora-social-tooltip">${s.name}</span></a>`).join("")}
         </div>
-        <button class="anjora-social-collapse" type="button" aria-label="Hide social media sidebar" aria-expanded="true" title="Hide social links"><span aria-hidden="true">‹</span></button>
+        <button class="anjora-social-collapse" type="button" aria-label="Show social media sidebar" aria-expanded="false" title="Show social links"><span aria-hidden="true">›</span></button>
     `;
     document.body.appendChild(dock);
 
     const collapse = dock.querySelector(".anjora-social-collapse");
-    collapse.addEventListener("click", () => {
-        const collapsed = dock.classList.toggle("is-collapsed");
+    const setCollapsed = (collapsed) => {
+        dock.classList.toggle("is-collapsed", collapsed);
         collapse.setAttribute("aria-expanded", String(!collapsed));
         collapse.setAttribute("aria-label", collapsed ? "Show social media sidebar" : "Hide social media sidebar");
         collapse.title = collapsed ? "Show social links" : "Hide social links";
         collapse.querySelector("span").textContent = collapsed ? "›" : "‹";
+    };
+
+    let userChangedSidebar = false;
+    collapse.addEventListener("click", () => {
+        userChangedSidebar = true;
+        setCollapsed(!dock.classList.contains("is-collapsed"));
     });
+
+    // Wait until the page and its assets have loaded, then briefly preview the
+    // social links for one second before returning to the compact closed state.
+    const startPreview = () => {
+        window.setTimeout(() => {
+            if (userChangedSidebar) return;
+            setCollapsed(false);
+            window.setTimeout(() => {
+                if (!userChangedSidebar) setCollapsed(true);
+            }, 1000);
+        }, 5000);
+    };
+
+    if (document.readyState === "complete") {
+        startPreview();
+    } else {
+        window.addEventListener("load", startPreview, { once: true });
+    }
 }
 if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initAnjoraSocialSidebar, { once: true });
