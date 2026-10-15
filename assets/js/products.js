@@ -68,7 +68,7 @@ const PRODUCTS = [
     },
     {
         id: "seo-prod-003",
-        name: "Handmade Red Crochet Heart Keychain",
+        name: "Handmade Red Crochet Heart Keychain – Knitted Heart Keyring",
         slug: "handmade-red-crochet-heart-keychain",
         category: "handmade-accessories",
         categoryName: "Handmade Accessories",
@@ -94,7 +94,7 @@ const PRODUCTS = [
     },
     {
         id: "seo-prod-004",
-        name: "Handmade Crochet Flower Hair Clips with Green Leaves",
+        name: "Handmade Crochet Flower Hair Clips with Green Leaves – Floral Barrettes",
         slug: "handmade-crochet-flower-hair-clips-green-leaves",
         category: "handmade-accessories",
         categoryName: "Handmade Accessories",
@@ -146,7 +146,7 @@ const PRODUCTS = [
     },
     {
         id: "seo-prod-006",
-        name: "Colorful Gel Candles in Glass Jars – Rainbow Set",
+        name: "Colorful Gel Candles in Glass Jars – Rainbow Decorative Candle Set",
         slug: "colorful-gel-candles-glass-jars-rainbow-set",
         category: "handmade-accessories",
         categoryName: "Handmade Accessories",
@@ -172,7 +172,7 @@ const PRODUCTS = [
     },
     {
         id: "seo-prod-007",
-        name: "Handmade Crochet Tiger Keychain – Orange Tiger Charm",
+        name: "Handmade Crochet Tiger Keychain – Cute Orange Tiger Bag Charm",
         slug: "handmade-crochet-tiger-keychain-orange-bag-charm",
         category: "handmade-accessories",
         categoryName: "Handmade Accessories",
@@ -224,7 +224,7 @@ const PRODUCTS = [
     },
     {
         id: "seo-prod-009",
-        name: "Handmade Crochet Green Pear Keychain",
+        name: "Handmade Crochet Green Pear Keychain – Cute Fruit Bag Charm",
         slug: "handmade-crochet-green-pear-keychain",
         category: "handmade-accessories",
         categoryName: "Handmade Accessories",
@@ -250,7 +250,7 @@ const PRODUCTS = [
     },
     {
         id: "seo-prod-010",
-        name: "Handmade Orange Crochet Heart Keychain",
+        name: "Handmade Orange Crochet Heart Keychain – Soft Heart-Shaped Keyring",
         slug: "handmade-orange-crochet-heart-keychain",
         category: "handmade-accessories",
         categoryName: "Handmade Accessories",
@@ -276,7 +276,7 @@ const PRODUCTS = [
     },
     {
         id: "seo-prod-011",
-        name: "Handmade Crochet Mushroom Keychain – Brown and Cream",
+        name: "Handmade Crochet Mushroom Keychain – Brown Cap and Cream Stem",
         slug: "handmade-crochet-mushroom-keychain-brown-cream",
         category: "handmade-accessories",
         categoryName: "Handmade Accessories",
@@ -328,7 +328,7 @@ const PRODUCTS = [
     },
     {
         id: "seo-prod-013",
-        name: "Handmade Crochet Frog Keychain – Green Frog Charm",
+        name: "Handmade Crochet Frog Keychain – Cute Green Frog Plush Bag Charm",
         slug: "handmade-crochet-frog-keychain-green-plush",
         category: "handmade-accessories",
         categoryName: "Handmade Accessories",
@@ -380,7 +380,7 @@ const PRODUCTS = [
     },
     {
         id: "seo-prod-015",
-        name: "Handmade Chunky Crochet Strawberry Keychain",
+        name: "Handmade Chunky Crochet Strawberry Keychain with Green Leaves",
         slug: "handmade-chunky-crochet-strawberry-keychain",
         category: "handmade-accessories",
         categoryName: "Handmade Accessories",
@@ -406,7 +406,7 @@ const PRODUCTS = [
     },
     {
         id: "seo-prod-016",
-        name: "Handmade Crochet Pumpkin Keychain with Green Leaves",
+        name: "Handmade Crochet Pumpkin Keychain with Green Leaves – Orange",
         slug: "handmade-crochet-pumpkin-keychain-orange-green-leaves",
         category: "handmade-accessories",
         categoryName: "Handmade Accessories",
