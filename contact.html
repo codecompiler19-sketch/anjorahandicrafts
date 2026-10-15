@@ -34,6 +34,10 @@
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
                         <span class="action-badge cart-count-badge" style="display: none;">0</span>
                     </button>
+                
+                    <button id="mobileToggle" class="mobile-toggle" aria-label="Open navigation menu" aria-controls="mobileNavDrawer" aria-expanded="false">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                    </button>
                 </div>
             </div>
         </div>
@@ -125,15 +129,6 @@
                     <h3 style="font-size: 1.25rem; margin-bottom: 1.25rem; color: var(--secondary);">Headquarters & Workshop</h3>
                     
                     <div style="margin-bottom: 1.25rem;">
-                        <strong style="color: var(--secondary); font-size: 0.9rem;">Studio Address:</strong>
-                        <p style="color: var(--text-muted); font-size: 0.9rem;">
-                            Anjora Handicrafts Heritage Studio<br>
-                            Craft Village, Heritage Lane,<br>
-                            Jaipur, Rajasthan 302001, India
-                        </p>
-                    </div>
-
-                    <div style="margin-bottom: 1.25rem;">
                         <strong style="color: var(--secondary); font-size: 0.9rem;">Email Support:</strong>
                         <p style="color: var(--text-muted); font-size: 0.9rem;">
                             contact@anjorahandicrafts.com<br>
@@ -152,6 +147,19 @@
             </div>
         </div>
     </main>
+
+    
+    <!-- Shared mobile navigation drawer with expandable accordion sections -->
+    <div id="mobileNavDrawer" class="cart-drawer mobile-nav-drawer" style="right:auto; left:0; transform:translateX(-100%);">
+        <div class="cart-header"><h3>Anjora Handicrafts</h3><button id="mobileNavClose" class="cart-close-btn" aria-label="Close navigation">✕</button></div>
+        <div class="mobile-nav-content">
+            <a class="mobile-nav-link" href="index.html">Home</a>
+            <details class="mobile-nav-accordion" open><summary>Shop</summary><div class="mobile-nav-submenu"><a href="shop.html">All Products</a><a href="shop.html?category=handmade-accessories">Handmade Accessories</a></div></details>
+            <details class="mobile-nav-accordion"><summary>My Account & Shopping</summary><div class="mobile-nav-submenu"><a href="wishlist.html">Wishlist</a><a href="cart.html">Shopping Cart</a><a href="checkout.html">Checkout</a></div></details>
+            <details class="mobile-nav-accordion"><summary>About Anjora</summary><div class="mobile-nav-submenu"><a href="about.html">About Us</a><a href="contact.html">Contact Us</a></div></details>
+            <details class="mobile-nav-accordion"><summary>Policies</summary><div class="mobile-nav-submenu"><a href="refund-policy.html">Shipping & Refund Policy</a><a href="privacy-policy.html">Privacy Policy</a><a href="terms.html">Terms & Conditions</a></div></details>
+        </div>
+    </div>
 
     <!-- Slide-over Cart Drawer -->
     <div id="cartOverlay" class="cart-overlay" onclick="Cart.closeDrawer()"></div>
