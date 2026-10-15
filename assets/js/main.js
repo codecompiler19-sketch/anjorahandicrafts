@@ -364,26 +364,68 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// Delayed sticky Instagram follow tab (shared across storefront pages)
+// Delayed click-to-expand Instagram social tab (shared storefront feature)
 function initAnjoraInstagramTab() {
-    if (document.getElementById("anjoraInstagramTab")) return;
+    if (document.getElementById("anjoraSocialDock")) return;
 
-    const tab = document.createElement("a");
-    tab.id = "anjoraInstagramTab";
-    tab.className = "anjora-instagram-tab";
-    tab.href = "https://www.instagram.com/anjorahandicrafts/";
-    tab.target = "_blank";
-    tab.rel = "noopener noreferrer";
-    tab.setAttribute("aria-label", "Follow Anjora Handicrafts on Instagram (opens in a new tab)");
-    tab.innerHTML = '<span class="anjora-instagram-tab__icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle class="anjora-instagram-tab__dot" cx="17.5" cy="6.5" r="1"></circle></svg></span><span class="anjora-instagram-tab__label">Follow us on Instagram</span>';
-    document.body.appendChild(tab);
+    const dock = document.createElement("div");
+    dock.id = "anjoraSocialDock";
+    dock.className = "anjora-social-dock";
+    dock.innerHTML = `
+        <button type="button" class="anjora-social-tab" id="anjoraSocialToggle"
+            aria-label="Open social media links" aria-expanded="false" aria-controls="anjoraSocialPanel" tabindex="-1">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                <circle cx="12" cy="12" r="4"></circle>
+                <circle class="anjora-social-icon-dot" cx="17.5" cy="6.5" r="1"></circle>
+            </svg>
+            <span class="anjora-social-tab-text">Follow Us</span>
+        </button>
+        <section class="anjora-social-panel" id="anjoraSocialPanel" aria-label="Follow Anjora Handicrafts" hidden>
+            <button type="button" class="anjora-social-close" id="anjoraSocialClose" aria-label="Close social media panel">×</button>
+            <p class="anjora-social-eyebrow">Stay connected</p>
+            <h3>Follow Anjora Handicrafts</h3>
+            <p class="anjora-social-copy">Discover our handmade creations, new arrivals and gift ideas.</p>
+            <a class="anjora-social-instagram-link" href="https://www.instagram.com/anjorahandicrafts/" target="_blank" rel="noopener noreferrer">
+                <span class="anjora-social-instagram-mark" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle class="anjora-social-icon-dot" cx="17.5" cy="6.5" r="1"></circle></svg>
+                </span>
+                <span><strong>Instagram</strong><small>@anjorahandicrafts</small></span>
+                <span class="anjora-social-arrow" aria-hidden="true">↗</span>
+            </a>
+        </section>`;
+    document.body.appendChild(dock);
+
+    const toggle = dock.querySelector("#anjoraSocialToggle");
+    const panel = dock.querySelector("#anjoraSocialPanel");
+    const close = dock.querySelector("#anjoraSocialClose");
+
+    function setOpen(open) {
+        dock.classList.toggle("is-open", open);
+        toggle.setAttribute("aria-expanded", String(open));
+        toggle.setAttribute("aria-label", open ? "Close social media links" : "Open social media links");
+        panel.hidden = !open;
+    }
+    toggle.addEventListener("click", () => setOpen(!dock.classList.contains("is-open")));
+    close.addEventListener("click", () => {
+        setOpen(false);
+        toggle.focus();
+    });
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape" && dock.classList.contains("is-open")) {
+            setOpen(false);
+            toggle.focus();
+        }
+    });
+    document.addEventListener("click", event => {
+        if (!dock.contains(event.target)) setOpen(false);
+    });
 
     window.setTimeout(() => {
-        tab.classList.add("is-visible");
-        tab.setAttribute("tabindex", "0");
+        dock.classList.add("is-visible");
+        toggle.setAttribute("tabindex", "0");
     }, 5000);
 }
-
 if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initAnjoraInstagramTab, { once: true });
 } else {
