@@ -2960,3 +2960,62 @@ input, select, textarea { min-width: 0; max-width: 100%; }
         height: 20px;
     }
 }
+
+
+/* Fix testimonial arrows: keep previous/next at opposite sides */
+.testimonials-carousel {
+    position: relative;
+    display: block;
+    padding-inline: 54px;
+}
+.testimonials-carousel .testimonials-viewport {
+    width: 100%;
+}
+.testimonials-carousel .testimonial-arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 4;
+    transform: translateY(-50%);
+    margin: 0;
+}
+.testimonials-carousel .testimonial-arrow-left { left: 0; }
+.testimonials-carousel .testimonial-arrow-right { right: 0; }
+
+/* Homepage slideshow navigation arrows */
+.hero-section.hero-image-only { position: relative; }
+.hero-section.hero-image-only .hero-arrow {
+    position: absolute;
+    z-index: 8;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(36px, 4vw, 48px);
+    height: clamp(36px, 4vw, 48px);
+    padding: 0;
+    border: 1px solid rgba(255,255,255,.75);
+    border-radius: 50%;
+    background: rgba(255,255,255,.9);
+    color: var(--secondary);
+    box-shadow: 0 3px 12px rgba(0,0,0,.14);
+    cursor: pointer;
+    transition: background .2s ease, color .2s ease;
+}
+.hero-section.hero-image-only .hero-arrow:hover {
+    background: var(--primary);
+    color: #fff;
+}
+.hero-section.hero-image-only .hero-arrow-left { left: clamp(8px, 2vw, 24px); }
+.hero-section.hero-image-only .hero-arrow-right { right: clamp(8px, 2vw, 24px); }
+.hero-section.hero-image-only .hero-arrow svg { display:block; }
+@media (max-width: 600px) {
+    .testimonials-carousel { padding-inline: 38px; }
+    .testimonials-carousel .testimonial-arrow { width: 32px; height: 32px; }
+    .testimonials-carousel .testimonial-arrow svg { width: 18px; height: 18px; }
+    .hero-section.hero-image-only .hero-arrow {
+        width: 34px;
+        height: 34px;
+    }
+    .hero-section.hero-image-only .hero-arrow svg { width: 19px; height: 19px; }
+}
