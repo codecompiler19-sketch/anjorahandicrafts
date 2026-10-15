@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 260" role="img" aria-labelledby="title desc">
+<title id="title">Anjora Handicrafts</title><desc id="desc">Anjora Handicrafts logo with a gold letter A and colorful floral flourishes.</desc>
+<defs><linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f7d58a"/><stop offset=".45" stop-color="#b77922"/><stop offset=".72" stop-color="#f5c35f"/><stop offset="1" stop-color="#8b4c12"/></linearGradient><linearGradient id="brown" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#5b2d0a"/><stop offset="1" stop-color="#7a3f13"/></linearGradient></defs>
+<g transform="translate(0 -3)">
+<path d="M380 16 295 150h44l41-69 41 69h44z" fill="url(#gold)" stroke="#9d641b" stroke-width="2"/>
+<path d="M323 125c-43-37-73-7-50 14 19 17 41 4 55-18-9 42-40 56-64 37-29-23-4-65 28-64 12 0 23 8 31 18" fill="#e7a13d"/>
+<path d="M315 113c-22-45-53-37-51-12 2 18 22 25 44 15-18 25-40 22-49 3-10-23 13-45 35-36" fill="#e54f73"/>
+<path d="M332 95c-10-35-35-43-43-23-7 17 7 32 29 34-22 13-39 2-36-16 3-22 28-28 44-9" fill="#238e85"/>
+<path d="M425 105c45-32 81-11 79 6-3 21-29 18-53-2 20 30 49 29 61 10 13-20-12-45-40-33" fill="#e3a73e"/>
+<path d="M425 111c31-18 51-7 45 8-5 12-19 12-33 4" fill="none" stroke="#8c4b12" stroke-width="3"/>
+<path d="M429 109c39-18 81-6 106 13l26 21-20 2-29-20c-27-17-54-18-83-8" fill="url(#gold)"/>
+<path d="M557 141c17-9 30-5 44 2-15 3-21 8-29 18-7-8-11-13-15-20" fill="#a44c20"/>
+<path d="M564 142c15-8 28-8 42-3-15 8-23 15-31 25" fill="#6a3413"/>
+<circle cx="283" cy="82" r="4" fill="url(#gold)"/><circle cx="303" cy="65" r="3.5" fill="url(#gold)"/><circle cx="272" cy="107" r="3" fill="url(#gold)"/>
+</g>
+<text x="380" y="208" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="82" font-weight="bold" letter-spacing="2" fill="url(#brown)">ANJORA</text>
+<text x="380" y="247" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" letter-spacing="9" fill="#99601f">HANDICRAFTS</text>
+</svg>
