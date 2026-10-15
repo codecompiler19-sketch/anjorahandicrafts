@@ -3258,3 +3258,46 @@ input, select, textarea, button { max-width: 100%; }
  .about-closing .btn { margin-left:2.9rem; }
 }
 @media (prefers-reduced-motion:reduce) { .about-product-card,.about-product-image img { transition:none; } }
+
+
+/* Desktop account access in the main header */
+.account-header-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .45rem;
+    min-height: 42px;
+    padding: .55rem .85rem;
+    border: 1px solid var(--border-color, #eadfce);
+    border-radius: 999px;
+    color: var(--text-primary, #25211d);
+    background: #fffaf4;
+    font-size: .82rem;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: background .2s ease, border-color .2s ease, color .2s ease;
+}
+.account-header-btn:hover,
+.account-header-btn:focus-visible {
+    color: #fff;
+    background: var(--primary, #d1933f);
+    border-color: var(--primary, #d1933f);
+    outline: none;
+}
+.account-header-btn svg { flex: 0 0 auto; }
+@media (max-width: 900px) {
+    .account-header-btn { display: none; }
+}
+.account-page { min-height: 55vh; padding: 3.5rem 1rem; background: var(--cream-bg, #faf7f2); }
+.account-card { width: min(100%, 460px); margin: 0 auto; padding: clamp(1.5rem, 4vw, 2.5rem); background: #fff; border: 1px solid var(--border-color, #eadfce); border-radius: 20px; box-shadow: 0 12px 36px rgba(39,27,13,.08); }
+.account-card h1 { margin: 0 0 .5rem; text-align: center; }
+.account-intro { margin: 0 0 1.5rem; color: var(--text-secondary, #746b61); text-align: center; line-height: 1.6; }
+.account-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; margin-bottom: 1.25rem; padding: .3rem; background: #f6efe5; border-radius: 12px; }
+.account-tabs button { padding: .75rem; border-radius: 9px; font-weight: 700; color: #62584d; }
+.account-tabs button.active { background: #fff; color: var(--primary, #d1933f); box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+.account-form { display: grid; gap: 1rem; }
+.account-form label { display: grid; gap: .4rem; font-size: .88rem; font-weight: 700; }
+.account-form input { width: 100%; padding: .85rem 1rem; border: 1px solid var(--border-color, #e6d9c8); border-radius: 10px; background: #fff; }
+.account-form input:focus { outline: 2px solid rgba(209,147,63,.25); border-color: var(--primary, #d1933f); }
+.account-submit { width: 100%; padding: .9rem 1rem; border-radius: 999px; color: #fff; background: var(--primary, #d1933f); font-weight: 800; }
+.account-notice { margin-top: 1rem; padding: .85rem; border-radius: 10px; background: #fff7e9; color: #70542d; font-size: .85rem; line-height: 1.55; }
