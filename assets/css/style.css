@@ -2418,3 +2418,22 @@ input, select, textarea { min-width: 0; max-width: 100%; }
     visibility: visible;
     pointer-events: auto;
 }
+
+
+/* Anjora Handicrafts brand logo */
+.site-logo-img {
+    display: block;
+    width: clamp(170px, 22vw, 245px);
+    height: auto;
+    max-height: 92px;
+    object-fit: contain;
+}
+.site-header .logo {
+    display: inline-flex;
+    align-items: center;
+    flex: 0 1 auto;
+    min-width: 0;
+}
+@media (max-width: 600px) {
+    .site-logo-img { width: clamp(145px, 48vw, 205px); max-height: 76px; }
+}
