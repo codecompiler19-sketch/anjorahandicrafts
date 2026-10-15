@@ -1,18 +1,41 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 260" role="img" aria-labelledby="title desc">
-<title id="title">Anjora Handicrafts</title><desc id="desc">Anjora Handicrafts logo with a gold letter A and colorful floral flourishes.</desc>
-<defs><linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f7d58a"/><stop offset=".45" stop-color="#b77922"/><stop offset=".72" stop-color="#f5c35f"/><stop offset="1" stop-color="#8b4c12"/></linearGradient><linearGradient id="brown" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#5b2d0a"/><stop offset="1" stop-color="#7a3f13"/></linearGradient></defs>
-<g transform="translate(0 -3)">
-<path d="M380 16 295 150h44l41-69 41 69h44z" fill="url(#gold)" stroke="#9d641b" stroke-width="2"/>
-<path d="M323 125c-43-37-73-7-50 14 19 17 41 4 55-18-9 42-40 56-64 37-29-23-4-65 28-64 12 0 23 8 31 18" fill="#e7a13d"/>
-<path d="M315 113c-22-45-53-37-51-12 2 18 22 25 44 15-18 25-40 22-49 3-10-23 13-45 35-36" fill="#e54f73"/>
-<path d="M332 95c-10-35-35-43-43-23-7 17 7 32 29 34-22 13-39 2-36-16 3-22 28-28 44-9" fill="#238e85"/>
-<path d="M425 105c45-32 81-11 79 6-3 21-29 18-53-2 20 30 49 29 61 10 13-20-12-45-40-33" fill="#e3a73e"/>
-<path d="M425 111c31-18 51-7 45 8-5 12-19 12-33 4" fill="none" stroke="#8c4b12" stroke-width="3"/>
-<path d="M429 109c39-18 81-6 106 13l26 21-20 2-29-20c-27-17-54-18-83-8" fill="url(#gold)"/>
-<path d="M557 141c17-9 30-5 44 2-15 3-21 8-29 18-7-8-11-13-15-20" fill="#a44c20"/>
-<path d="M564 142c15-8 28-8 42-3-15 8-23 15-31 25" fill="#6a3413"/>
-<circle cx="283" cy="82" r="4" fill="url(#gold)"/><circle cx="303" cy="65" r="3.5" fill="url(#gold)"/><circle cx="272" cy="107" r="3" fill="url(#gold)"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 1024" role="img" aria-labelledby="title desc">
+<title id="title">Anjora Handicrafts</title><desc id="desc">Anjora Handicrafts brand mark featuring a metallic gold letter A, colorful floral flourishes, a flowing golden ribbon and tassel, and elegant brown lettering.</desc>
+<defs>
+ <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff0b1"/><stop offset=".2" stop-color="#dba044"/><stop offset=".42" stop-color="#fff0a2"/><stop offset=".68" stop-color="#a35b16"/><stop offset=".84" stop-color="#f9cb62"/><stop offset="1" stop-color="#85440f"/></linearGradient>
+ <linearGradient id="brown" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#381a07"/><stop offset=".5" stop-color="#6d350d"/><stop offset="1" stop-color="#321604"/></linearGradient>
+ <linearGradient id="teal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#58d1c0"/><stop offset=".55" stop-color="#087e79"/><stop offset="1" stop-color="#034c50"/></linearGradient>
+ <linearGradient id="pink" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff7d9b"/><stop offset=".55" stop-color="#ed3568"/><stop offset="1" stop-color="#f5a04a"/></linearGradient>
+ <linearGradient id="orange" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffe36b"/><stop offset=".5" stop-color="#ff8a19"/><stop offset="1" stop-color="#d94b21"/></linearGradient>
+</defs>
+<rect width="1536" height="1024" fill="#fff"/>
+<g stroke-linejoin="round">
+<!-- Large gold A -->
+<path d="M755 24 L446 615 L625 615 L756 356 L891 615 L1085 615 Z" fill="url(#gold)" stroke="#8b4b11" stroke-width="4"/>
+<path d="M756 55 L478 600 L613 600 L756 328 L902 600 L1046 600 Z" fill="#fff" opacity=".12"/>
+<!-- Decorative left curling tendrils -->
+<path d="M489 591 C390 593 344 548 366 491 C384 447 434 451 445 479 C456 510 422 531 404 512 C393 500 402 486 414 487" fill="none" stroke="url(#gold)" stroke-width="10"/>
+<path d="M510 562 C435 539 394 476 424 428 C449 388 500 407 514 441 C526 471 504 490 480 478 C458 467 470 444 486 450" fill="none" stroke="url(#gold)" stroke-width="6"/>
+<!-- colorful stylized leaves -->
+<path d="M531 500 C472 459 465 400 485 350 C532 372 566 416 553 463 Z" fill="url(#teal)" stroke="#17645e" stroke-width="4"/>
+<path d="M526 480 C526 435 510 395 485 350 M526 442 L500 411 M531 462 L549 427" fill="none" stroke="#a1e4d2" stroke-width="4"/>
+<path d="M487 514 C420 506 360 464 363 402 C420 402 473 431 487 514 Z" fill="url(#pink)" stroke="#b83c50" stroke-width="4"/>
+<path d="M480 501 C440 463 403 431 363 402 M443 470 L429 431 M464 488 L460 450" fill="none" stroke="#ffd0b0" stroke-width="4"/>
+<path d="M548 454 C527 387 561 311 604 270 C631 332 616 401 548 454 Z" fill="url(#teal)" stroke="#17645e" stroke-width="4"/>
+<path d="M550 444 C568 385 584 326 604 270 M560 401 L592 370 M553 428 L580 413" fill="none" stroke="#b5e6d8" stroke-width="4"/>
+<path d="M567 512 C553 440 589 364 646 314 C667 388 637 460 567 512 Z" fill="url(#pink)" stroke="#b83c50" stroke-width="4"/>
+<path d="M572 497 C599 435 625 372 646 314 M588 458 L626 421 M579 480 L612 463" fill="none" stroke="#ffd1ad" stroke-width="4"/>
+<path d="M575 577 C522 536 515 477 542 437 C593 469 618 526 575 577 Z" fill="url(#orange)"/>
+<!-- flourish on right, gold ribbon -->
+<path d="M571 564 C675 457 745 335 848 324 C920 315 973 362 1030 410 C1084 456 1121 465 1165 463" fill="none" stroke="#8a4a11" stroke-width="27"/>
+<path d="M571 558 C675 451 745 329 848 318 C920 309 973 356 1030 404 C1084 450 1121 459 1165 457" fill="none" stroke="url(#gold)" stroke-width="19"/>
+<path d="M580 553 C680 447 752 337 850 332 C923 329 978 373 1028 414" fill="none" stroke="#fff1b5" stroke-width="3"/>
+<!-- tassel -->
+<path d="M1152 444 C1197 419 1235 427 1266 451 C1234 455 1204 478 1187 507 C1169 487 1158 465 1152 444 Z" fill="url(#brown)"/>
+<path d="M1162 446 C1200 430 1236 444 1260 455 M1170 453 L1225 486 M1178 460 L1214 496 M1186 465 L1205 502" fill="none" stroke="#d98c32" stroke-width="4"/>
+<path d="M1150 437 L1172 432 L1180 457 L1158 463 Z" fill="#d63d22" stroke="#a44c13" stroke-width="3"/>
+<!-- gold decorative beads -->
+<g fill="url(#gold)" stroke="#a56a1e" stroke-width="3"><circle cx="470" cy="307" r="12"/><circle cx="584" cy="202" r="11"/><circle cx="612" cy="176" r="10"/><circle cx="408" cy="449" r="9"/></g>
 </g>
-<text x="380" y="208" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="82" font-weight="bold" letter-spacing="2" fill="url(#brown)">ANJORA</text>
-<text x="380" y="247" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" letter-spacing="9" fill="#99601f">HANDICRAFTS</text>
+<text x="768" y="889" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="245" letter-spacing="4" fill="url(#brown)" stroke="#7c4212" stroke-width="1.5">ANJORA</text>
+<text x="768" y="1000" text-anchor="middle" font-family="Arial,sans-serif" font-size="68" letter-spacing="20" fill="#8e511c">HANDICRAFTS</text>
 </svg>
