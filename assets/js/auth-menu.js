@@ -75,7 +75,7 @@ function render(user) {
       }
     });
   }
-  menu.innerHTML = '<a href="account.html">My Account & Orders</a><a href="addresses.html">My Addresses</a><button type="button" id="customerSignOut">Sign out</button>';
+  menu.innerHTML = '<a href="account.html">Account overview</a><a href="account.html#orders">Order history</a><a href="account.html#profile">Profile details</a><a href="addresses.html">Saved address</a><a href="wishlist.html">My wishlist</a><button type="button" id="customerSignOut">Sign out</button>';
   menu.querySelector("#customerSignOut").addEventListener("click", async () => {
     try {
       await signOut(auth);
