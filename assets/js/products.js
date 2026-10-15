@@ -52,6 +52,7 @@ const PRODUCTS = [
         seoTitle: "Handmade Crochet Sunflower Hair Band with Green Leaves",
         metaDescription: "Add a floral touch to your style with this handmade crochet sunflower hair band featuring bright yellow petals and beautiful green leaves. A charming handmade accessory for gifting and everyday styling.",
         primaryKeyword: "handmade crochet sunflower hair band",
+        imageAltText: "Handmade crochet sunflower hair band with yellow petals, brown center, and green leaves.",
         tags: ["handmade crochet sunflower hair band","crochet sunflower accessory","handmade floral hair band","sunflower crochet accessory","handcrafted hair accessory"],
     },
     {
@@ -78,6 +79,7 @@ const PRODUCTS = [
         seoTitle: "Handmade Crochet Sunflower Hair Clips – Set of 2",
         metaDescription: "Brighten your hairstyle with a pair of handmade crochet sunflower hair clips featuring vibrant yellow flowers and elegant green bows. A charming floral accessory and gift idea.",
         primaryKeyword: "handmade crochet sunflower hair clips",
+        imageAltText: "Pair of handmade crochet sunflower hair clips with bright yellow petals, brown centers, and green fabric bows.",
         tags: ["handmade crochet sunflower hair clips","sunflower hair accessories","crochet flower clips","handmade hair clips","floral hair clips for girls"],
     },
     {
@@ -104,6 +106,7 @@ const PRODUCTS = [
         seoTitle: "Handmade Red Crochet Heart Keychain | Heart Keyring",
         metaDescription: "Shop a handmade red crochet heart keychain featuring a soft, textured heart and a sturdy metal keyring. A cute accessory and thoughtful gift for birthdays, anniversaries, and Valentine's Day.",
         primaryKeyword: "handmade crochet heart keychain",
+        imageAltText: "Red handmade crochet heart keychain with a silver metal keyring.",
         tags: ["handmade crochet heart keychain","red heart keychain","crochet heart keyring","handmade keychain","heart-shaped crochet gift","cute handmade gifts"],
     },
     {
@@ -130,6 +133,7 @@ const PRODUCTS = [
         seoTitle: "Handmade Crochet Flower Hair Clips with Green Leaves",
         metaDescription: "Add a charming floral touch to your hairstyle with handmade crochet flower hair clips featuring cream, brown, and green details. A lovely accessory for everyday styling and gifting.",
         primaryKeyword: "handmade crochet flower hair clips",
+        imageAltText: "Set of handmade crochet flower hair clips featuring cream and brown flowers with dark green leaves on ivory-colored clips.",
         tags: ["handmade crochet flower hair clips","crochet floral barrettes","handmade flower hair accessories","crochet hair clips for girls","floral hair barrettes","handmade crochet accessories"],
     },
     {
@@ -156,6 +160,7 @@ const PRODUCTS = [
         seoTitle: "Colorful Crochet Flower Hair Clips Set for Girls",
         metaDescription: "Add a playful touch to any hairstyle with colorful handmade crochet flower hair clips in beautiful pastel shades. A cheerful floral hair accessory and gift idea for girls.",
         primaryKeyword: "crochet flower hair clips",
+        imageAltText: "Pack of colorful handmade crochet flower hair clips in purple, pink, blue, and yellow with contrasting centers.",
         tags: ["crochet flower hair clips","colorful flower hair clips","handmade hair accessories","crochet hair clips for girls","pastel flower clips","handmade floral hair accessories"],
     },
     {
@@ -182,6 +187,7 @@ const PRODUCTS = [
         seoTitle: "Colorful Gel Candles in Glass Jars | Decorative Candle Set",
         metaDescription: "Brighten your space with colorful gel candles in transparent glass jars. This vibrant rainbow candle collection adds a decorative touch to celebrations, home décor, and gifting.",
         primaryKeyword: "colorful gel candles",
+        imageAltText: "Set of colorful gel candles in transparent glass jars featuring red, pink, yellow, green, blue, and purple colors.",
         tags: ["colorful gel candles","decorative gel candles","gel candles in glass jars","rainbow candle set","colorful decorative candles","handmade candle gifts"],
     },
     {
@@ -208,6 +214,7 @@ const PRODUCTS = [
         seoTitle: "Handmade Crochet Tiger Keychain | Cute Tiger Bag Charm",
         metaDescription: "Add a playful touch to your keys or bag with this handmade crochet tiger keychain featuring orange yarn, black stripes, and a cute white muzzle. A charming accessory and gift idea for animal lovers.",
         primaryKeyword: "handmade crochet tiger keychain",
+        imageAltText: "Handmade orange crochet tiger keychain with black stripes, white muzzle, round black eyes, and silver metal keyring.",
         tags: ["handmade crochet tiger keychain","cute tiger keychain","crochet animal keychain","handmade animal bag charm","tiger crochet accessory","amigurumi tiger keyring"],
     },
     {
@@ -234,6 +241,7 @@ const PRODUCTS = [
         seoTitle: "Handmade Crochet Strawberry Keychain | Cute Fruit Keyring",
         metaDescription: "Add a cute fruit-inspired touch to your keys or bag with this handmade crochet strawberry keychain featuring a bright red body, white seed details, and green leaves. A charming accessory and gift idea.",
         primaryKeyword: "handmade crochet strawberry keychain",
+        imageAltText: "Handmade red crochet strawberry keychain with white seed details, a green leafy top, and a silver metal keyring.",
         tags: ["handmade crochet strawberry keychain","strawberry crochet keyring","red strawberry keychain","handmade fruit keychain","crochet fruit bag charm","cute handmade accessories"],
     },
     {
@@ -260,6 +268,7 @@ const PRODUCTS = [
         seoTitle: "Handmade Crochet Pear Keychain | Green Fruit Bag Charm",
         metaDescription: "Add a playful fruit-inspired touch to your keys or bag with this handmade green crochet pear keychain. Its textured yarn design makes it a cute accessory and a thoughtful gift for fruit lovers.",
         primaryKeyword: "handmade crochet pear keychain",
+        imageAltText: "Handmade green crochet pear keychain with a small brown stem and silver metal keyring.",
         tags: ["handmade crochet pear keychain","green pear keychain","crochet fruit keyring","handmade fruit bag charm","crochet pear accessory","cute handmade keychains"],
     },
     {
@@ -286,6 +295,7 @@ const PRODUCTS = [
         seoTitle: "Handmade Orange Crochet Heart Keychain | Heart Keyring",
         metaDescription: "Add a warm, handmade touch to your keys or bag with this orange crochet heart keychain. Its soft, textured design makes it a charming accessory and a thoughtful gift for someone special.",
         primaryKeyword: "orange crochet heart keychain",
+        imageAltText: "Handmade orange crochet heart keychain with a textured yarn design and silver metal keyring.",
         tags: ["orange crochet heart keychain","handmade heart keyring","crochet heart keychain","orange heart bag charm","handmade crochet gift","heart-shaped keychain"],
     },
     {
@@ -312,6 +322,7 @@ const PRODUCTS = [
         seoTitle: "Handmade Crochet Mushroom Keychain | Cute Mushroom Keyring",
         metaDescription: "Add a whimsical touch to your keys or bag with this handmade crochet mushroom keychain featuring a warm brown cap and cream stem. A cute accessory and thoughtful gift for mushroom lovers.",
         primaryKeyword: "handmade crochet mushroom keychain",
+        imageAltText: "Handmade crochet mushroom keychain with a textured brown cap, cream-colored stem, and silver metal keyring.",
         tags: ["handmade crochet mushroom keychain","crochet mushroom keyring","handmade mushroom keychain","mushroom bag charm","crochet nature accessories","cute handmade keychains"],
     },
     {
@@ -338,6 +349,7 @@ const PRODUCTS = [
         seoTitle: "Handmade Black Crochet Cat Keychain | Cute Cat Keyring",
         metaDescription: "Add a cute touch to your keys or bag with this handmade black crochet cat keychain featuring bright yellow ear details and a soft, textured yarn design. A lovely gift for cat lovers.",
         primaryKeyword: "handmade black crochet cat keychain",
+        imageAltText: "Handmade black crochet cat keychain with pointed ears, yellow inner-ear details, and a silver metal keyring.",
         tags: ["handmade black crochet cat keychain","black cat keyring","crochet cat keychain","handmade cat bag charm","cute crochet animal keychain","cat lover gift"],
     },
     {
@@ -364,6 +376,7 @@ const PRODUCTS = [
         seoTitle: "Handmade Crochet Frog Keychain | Cute Green Frog Charm",
         metaDescription: "Add a playful touch to your keys or bag with this handmade crochet frog keychain featuring bright green yarn, raised eyes, and a cheerful red smile. A cute accessory and gift for frog lovers.",
         primaryKeyword: "handmade crochet frog keychain",
+        imageAltText: "Handmade lime green crochet frog keychain with raised eyes, black pupils, a red embroidered smile, and a silver metal keyring.",
         tags: ["handmade crochet frog keychain","green frog keychain","crochet frog plush","frog bag charm","handmade animal keyring","cute crochet keychain"],
     },
     {
@@ -390,6 +403,7 @@ const PRODUCTS = [
         seoTitle: "Handmade Crochet Peach Keychain | Pink Fruit Bag Charm",
         metaDescription: "Add a cute fruit-inspired touch to your keys or bag with this handmade pink crochet peach keychain featuring soft pink yarn and green leaves. A charming accessory and thoughtful gift.",
         primaryKeyword: "handmade crochet peach keychain",
+        imageAltText: "Handmade pink crochet peach keychain with dark green leaves and a silver metal keyring.",
         tags: ["handmade crochet peach keychain","pink peach keychain","crochet fruit keyring","handmade fruit bag charm","peach crochet accessory","cute handmade keychains"],
     },
     {
@@ -416,6 +430,7 @@ const PRODUCTS = [
         seoTitle: "Handmade Crochet Strawberry Keychain | Chunky Fruit Charm",
         metaDescription: "Add a playful touch to your keys or bag with this chunky handmade crochet strawberry keychain featuring a bright red textured body and dark green leaves. A cute fruit-inspired accessory and gift idea.",
         primaryKeyword: "handmade crochet strawberry keychain",
+        imageAltText: "Chunky handmade red crochet strawberry keychain with a textured yarn body, dark green leafy top, and silver metal keyring.",
         tags: ["handmade crochet strawberry keychain","chunky strawberry keychain","crochet fruit keyring","red strawberry bag charm","handmade crochet accessories","cute fruit keychain"],
     },
     {
@@ -442,6 +457,7 @@ const PRODUCTS = [
         seoTitle: "Handmade Crochet Pumpkin Keychain | Orange Pumpkin Charm",
         metaDescription: "Add a seasonal touch to your keys or bag with this handmade crochet pumpkin keychain featuring a bright orange body and dark green leaves. A charming autumn accessory and gift idea.",
         primaryKeyword: "handmade crochet pumpkin keychain",
+        imageAltText: "Handmade orange crochet pumpkin keychain with textured yarn, dark green leaves, and a silver metal keyring.",
         tags: ["handmade crochet pumpkin keychain","orange pumpkin keychain","crochet pumpkin bag charm","handmade autumn accessories","pumpkin crochet keyring","seasonal handmade gifts"],
     }
 ];
