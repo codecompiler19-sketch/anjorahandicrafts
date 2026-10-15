@@ -3044,3 +3044,56 @@ input, select, textarea, button { max-width: 100%; }
     .product-card h3, .product-card .product-title { overflow-wrap: anywhere; }
     .btn, .button, button { max-width: 100%; }
 }
+
+
+/* Delayed, fixed Instagram follow tab */
+.anjora-instagram-tab {
+    position: fixed;
+    z-index: 1200;
+    left: 0;
+    top: 42%;
+    display: flex;
+    align-items: center;
+    gap: .65rem;
+    max-width: min(270px, calc(100vw - 16px));
+    padding: .7rem .85rem .7rem .7rem;
+    border: 1px solid rgba(255,255,255,.7);
+    border-left: 0;
+    border-radius: 0 14px 14px 0;
+    background: linear-gradient(135deg, #f9ce34 0%, #ee2a7b 52%, #6228d7 100%);
+    color: #fff;
+    text-decoration: none;
+    font-size: .88rem;
+    font-weight: 750;
+    line-height: 1.25;
+    box-shadow: 0 5px 20px rgba(72, 31, 81, .24);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-110%);
+    transition: transform .45s ease, opacity .35s ease, visibility .35s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+.anjora-instagram-tab.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+.anjora-instagram-tab:hover,
+.anjora-instagram-tab:focus-visible {
+    color: #fff;
+    transform: translateX(0) scale(1.02);
+    outline: 3px solid rgba(238, 42, 123, .28);
+    outline-offset: 2px;
+}
+.anjora-instagram-tab__icon { display: grid; flex: 0 0 28px; place-items: center; width: 28px; height: 28px; }
+.anjora-instagram-tab__icon svg { display: block; width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+.anjora-instagram-tab__icon .anjora-instagram-tab__dot { fill: currentColor; stroke: none; }
+.anjora-instagram-tab__label { overflow-wrap: anywhere; }
+@media (max-width: 480px) {
+    .anjora-instagram-tab { top: 45%; gap: .45rem; padding: .65rem .7rem .65rem .55rem; font-size: .8rem; max-width: 205px; }
+    .anjora-instagram-tab__icon { flex-basis: 25px; width: 25px; height: 25px; }
+    .anjora-instagram-tab__icon svg { width: 23px; height: 23px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .anjora-instagram-tab { transition: none; }
+}
