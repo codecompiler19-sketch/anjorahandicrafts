@@ -54,7 +54,7 @@
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
       import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, signOut, onAuthStateChanged, updateProfile } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
-      import { getFirestore, doc, getDoc, setDoc, collection, getDocs, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
+      import { getFirestore, doc, getDoc, setDoc, collection, getDocs, query, orderBy, limit, where } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
 
       const firebaseConfig = {
         apiKey: "AIzaSyAIg8X7TGrRmhed31LOZwqkRAK2n8SVjlI",
@@ -173,10 +173,9 @@
         const target = $("orderList");
         target.textContent = "Loading your orders…";
         try {
-          const ordersQuery = query(collection(db, "orders"), orderBy("createdAt", "desc"), limit(25));
+          const ordersQuery = query(collection(db, "orders"), where("userId", "==", user.uid), orderBy("createdAt", "desc"), limit(25));
           const snapshots = await getDocs(ordersQuery);
-          const orders = snapshots.docs.map(item => ({ id: item.id, ...item.data() }))
-            .filter(order => order.userId === user.uid || order.customerUid === user.uid);
+          const orders = snapshots.docs.map(item => ({ id: item.id, ...item.data() }));
           if (!orders.length) {
             target.textContent = "No orders are linked to this account yet.";
             return;
