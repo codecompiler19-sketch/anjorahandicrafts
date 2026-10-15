@@ -364,70 +364,41 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// Delayed click-to-expand Instagram social tab (shared storefront feature)
-function initAnjoraInstagramTab() {
-    if (document.getElementById("anjoraSocialDock")) return;
+// Sticky social media sidebar — shared across storefront pages.
+function initAnjoraSocialSidebar() {
+    if (document.getElementById("anjoraSocialSidebar")) return;
 
-    const dock = document.createElement("div");
-    dock.id = "anjoraSocialDock";
-    dock.className = "anjora-social-dock";
+    const socials = [
+        { name: "WhatsApp", url: "https://wa.me/919999278207", label: "Chat with Anjora on WhatsApp", icon: '<path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5Z"/><path d="M8.8 8.2c.2-.5.5-.5.8-.5h.5c.2 0 .4.1.5.4l.8 1.8c.1.2.1.4-.1.6l-.6.7c-.2.2-.2.4 0 .7.6 1 1.5 1.8 2.5 2.3.3.1.5.1.7-.1l.8-1c.2-.2.4-.3.7-.2l1.7.8c.3.1.4.3.4.5 0 .3-.2 1.3-.8 1.8-.5.5-1.3.8-2.1.7-1.1-.1-2.5-.7-4-2-1.8-1.6-2.9-3.5-3.2-4.5-.3-1 .1-1.7.5-2Z"/>' },
+        { name: "Instagram", url: "https://www.instagram.com/anjorahandicrafts/", label: "Follow Anjora on Instagram", icon: '<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" class="social-dot"/>' },
+        { name: "Facebook", url: "https://facebook.com", label: "Visit Facebook", icon: '<path d="M14 8h3V4h-3a5 5 0 0 0-5 5v3H6v4h3v4h4v-4h3l1-4h-4V9a1 1 0 0 1 1-1Z"/>' },
+        { name: "YouTube", url: "https://youtube.com", label: "Visit YouTube", icon: '<path d="M22 12s0-3.2-.4-4.7a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.5A2.5 2.5 0 0 0 2.4 7.3C2 8.8 2 12 2 12s0 3.2.4 4.7a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.5a2.5 2.5 0 0 0 1.8-1.8C22 15.2 22 12 22 12Z"/><path d="m10 9 5 3-5 3Z"/>' },
+        { name: "Pinterest", url: "https://pinterest.com", label: "Visit Pinterest", icon: '<path d="M12 22a10 10 0 1 0-3.7-.7"/><path d="M9 18c1.1-1.6 1.5-3.6 2-5.5-.4-.8-.5-1.8-.1-2.8.8-2 3.4-2 3.7-.1.2 1.2-.7 3.2-1.1 4.7-.4 1.3.6 2.3 1.9 1.8 2.3-.8 3.5-3.5 3.2-6.2-.4-3.5-4.4-5-7.5-3.5-3.5 1.7-3.7 6-.9 8"/>' }
+    ];
+
+    const dock = document.createElement("aside");
+    dock.id = "anjoraSocialSidebar";
+    dock.className = "anjora-social-sidebar";
+    dock.setAttribute("aria-label", "Anjora social media links");
     dock.innerHTML = `
-        <button type="button" class="anjora-social-tab" id="anjoraSocialToggle"
-            aria-label="Open social media links" aria-expanded="false" aria-controls="anjoraSocialPanel" tabindex="-1">
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <rect x="3" y="3" width="18" height="18" rx="5"></rect>
-                <circle cx="12" cy="12" r="4"></circle>
-                <circle class="anjora-social-icon-dot" cx="17.5" cy="6.5" r="1"></circle>
-            </svg>
-            <span class="anjora-social-tab-text">Follow Us</span>
-        </button>
-        <section class="anjora-social-panel" id="anjoraSocialPanel" aria-label="Follow Anjora Handicrafts" hidden>
-            <button type="button" class="anjora-social-close" id="anjoraSocialClose" aria-label="Close social media panel">×</button>
-            <p class="anjora-social-eyebrow">Stay connected</p>
-            <h3>Follow Anjora Handicrafts</h3>
-            <p class="anjora-social-copy">Discover our handmade creations, new arrivals and gift ideas.</p>
-            <a class="anjora-social-instagram-link" href="https://www.instagram.com/anjorahandicrafts/" target="_blank" rel="noopener noreferrer">
-                <span class="anjora-social-instagram-mark" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle class="anjora-social-icon-dot" cx="17.5" cy="6.5" r="1"></circle></svg>
-                </span>
-                <span><strong>Instagram</strong><small>@anjorahandicrafts</small></span>
-                <span class="anjora-social-arrow" aria-hidden="true">↗</span>
-            </a>
-        </section>`;
+        <div class="anjora-social-rail" id="anjoraSocialRail">
+            ${socials.map(s => `<a class="anjora-social-link social-${s.name.toLowerCase()}" href="${s.url}" target="_blank" rel="noopener noreferrer" aria-label="${s.label}" title="${s.name}"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">${s.icon}</svg><span class="anjora-social-tooltip">${s.name}</span></a>`).join("")}
+        </div>
+        <button class="anjora-social-collapse" type="button" aria-label="Hide social media sidebar" aria-expanded="true" title="Hide social links"><span aria-hidden="true">‹</span></button>
+    `;
     document.body.appendChild(dock);
 
-    const toggle = dock.querySelector("#anjoraSocialToggle");
-    const panel = dock.querySelector("#anjoraSocialPanel");
-    const close = dock.querySelector("#anjoraSocialClose");
-
-    function setOpen(open) {
-        dock.classList.toggle("is-open", open);
-        toggle.setAttribute("aria-expanded", String(open));
-        toggle.setAttribute("aria-label", open ? "Close social media links" : "Open social media links");
-        panel.hidden = !open;
-    }
-    toggle.addEventListener("click", () => setOpen(!dock.classList.contains("is-open")));
-    close.addEventListener("click", () => {
-        setOpen(false);
-        toggle.focus();
+    const collapse = dock.querySelector(".anjora-social-collapse");
+    collapse.addEventListener("click", () => {
+        const collapsed = dock.classList.toggle("is-collapsed");
+        collapse.setAttribute("aria-expanded", String(!collapsed));
+        collapse.setAttribute("aria-label", collapsed ? "Show social media sidebar" : "Hide social media sidebar");
+        collapse.title = collapsed ? "Show social links" : "Hide social links";
+        collapse.querySelector("span").textContent = collapsed ? "›" : "‹";
     });
-    document.addEventListener("keydown", event => {
-        if (event.key === "Escape" && dock.classList.contains("is-open")) {
-            setOpen(false);
-            toggle.focus();
-        }
-    });
-    document.addEventListener("click", event => {
-        if (!dock.contains(event.target)) setOpen(false);
-    });
-
-    window.setTimeout(() => {
-        dock.classList.add("is-visible");
-        toggle.setAttribute("tabindex", "0");
-    }, 5000);
 }
 if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initAnjoraInstagramTab, { once: true });
+    document.addEventListener("DOMContentLoaded", initAnjoraSocialSidebar, { once: true });
 } else {
-    initAnjoraInstagramTab();
+    initAnjoraSocialSidebar();
 }
