@@ -104,7 +104,7 @@ window.renderProductCard = function(product) {
 
             <div class="product-thumb-wrap">
                 <a href="${product.id === 'prod-013' ? 'hand-made-hair-band-crochet-sunflower.html' : 'product.html?id=' + product.id}">
-                    <img src="${product.images[0]}" alt="${product.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=600&q=80'">
+                    <img src="${encodeURI(product.images[0])}" alt="${product.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=600&q=80'">
                 </a>
                 <div class="product-quick-actions">
                     <button class="action-circle-btn" onclick="openQuickView('${product.id}')" title="Quick View">
@@ -182,7 +182,7 @@ window.openQuickView = function(productId) {
             <button class="modal-close-btn" onclick="closeQuickView()">✕</button>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding: 2rem;">
                 <div>
-                    <img src="${product.images[0]}" alt="${product.name}" style="width: 100%; border-radius: var(--radius-md); aspect-ratio: 1/1; object-fit: cover;">
+                    <img src="${encodeURI(product.images[0])}" alt="${product.name}" style="width: 100%; border-radius: var(--radius-md); aspect-ratio: 1/1; object-fit: cover;">
                 </div>
                 <div style="display: flex; flex-direction: column;">
                     <div style="font-size: 0.8rem; color: var(--primary); font-weight: 700; text-transform: uppercase; margin-bottom: 0.5rem;">
