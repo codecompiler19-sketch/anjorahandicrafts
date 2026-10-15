@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sign in or create your Anjora Handicrafts customer account.">
+    <title>Login / Register | Anjora Handicrafts</title>
+    <link rel="icon" href="assets/images/anjorahandicrafts-logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="assets/css/style.css?v=20261016-account-access">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-main">
+            <div class="container">
+                <a href="index.html" class="logo" aria-label="Anjora Handicrafts home"><img src="assets/images/anjorahandicrafts-logo.svg" alt="Anjora Handicrafts" class="site-logo-img"></a>
+                <div class="header-actions">
+                    <a href="index.html" class="account-header-btn">Continue shopping</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="account-page">
+        <section class="account-card" aria-labelledby="accountTitle">
+            <h1 id="accountTitle">Welcome to Anjora</h1>
+            <p class="account-intro">Sign in or create an account to keep your orders and details together.</p>
+            <div class="account-tabs" role="tablist" aria-label="Account access">
+                <button type="button" class="active" id="loginTab" role="tab" aria-selected="true">Login</button>
+                <button type="button" id="registerTab" role="tab" aria-selected="false">Register</button>
+            </div>
+            <form class="account-form" id="accountForm">
+                <label id="nameField" hidden>Full name
+                    <input type="text" name="name" autocomplete="name" placeholder="Your full name">
+                </label>
+                <label>Email address
+                    <input type="email" name="email" autocomplete="email" placeholder="you@example.com" required>
+                </label>
+                <label>Password
+                    <input type="password" name="password" autocomplete="current-password" minlength="6" placeholder="At least 6 characters" required>
+                </label>
+                <button class="account-submit" id="accountSubmit" type="submit">Login</button>
+            </form>
+            <p class="account-notice" id="accountNotice">Account sign-in and registration are not connected yet. Once Firebase setup is provided, this page can securely handle authentication and customer order records.</p>
+        </section>
+    </main>
+    <footer class="site-footer">
+        <div class="container"><p>&copy; <span id="currentYear">2026</span> Anjora Handicrafts. <a href="privacy-policy.html">Privacy Policy</a></p></div>
+    </footer>
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/main.js?v=20261016-social-sidebar-preview"></script>
+    <script>
+    (() => {
+        const loginTab = document.getElementById('loginTab');
+        const registerTab = document.getElementById('registerTab');
+        const nameField = document.getElementById('nameField');
+        const password = document.querySelector('input[name="password"]');
+        const submit = document.getElementById('accountSubmit');
+        const notice = document.getElementById('accountNotice');
+        let mode = 'login';
+        function setMode(nextMode) {
+            mode = nextMode;
+            const registering = mode === 'register';
+            nameField.hidden = !registering;
+            nameField.querySelector('input').required = registering;
+            password.autocomplete = registering ? 'new-password' : 'current-password';
+            submit.textContent = registering ? 'Create account' : 'Login';
+            loginTab.classList.toggle('active', !registering);
+            registerTab.classList.toggle('active', registering);
+            loginTab.setAttribute('aria-selected', String(!registering));
+            registerTab.setAttribute('aria-selected', String(registering));
+            notice.textContent = 'Account sign-in and registration are not connected yet. Once Firebase setup is provided, this page can securely handle authentication and customer order records.';
+        }
+        loginTab.addEventListener('click', () => setMode('login'));
+        registerTab.addEventListener('click', () => setMode('register'));
+        document.getElementById('accountForm').addEventListener('submit', event => {
+            event.preventDefault();
+            notice.textContent = 'Your form is ready, but authentication has not been activated. Please connect Firebase before using real customer accounts.';
+        });
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    })();
+    </script>
+</body>
+</html>
