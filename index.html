@@ -134,72 +134,29 @@
         </div>
     </div>
 
-    <!-- Hero Section Banner Slider -->
-    <section class="hero-section">
+    <!-- Simple clickable image-only hero slideshow -->
+    <section class="hero-section hero-image-only">
         <div class="hero-slider">
-            <!-- Slide 1: Brass & Royal Heritage -->
             <div class="hero-slide active">
-                <div class="hero-slide-bg" style="background-image: url('https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=1920&q=85');"></div>
-                <div class="hero-overlay"></div>
-                <div class="container" style="height: 100%;">
-                    <div class="hero-content">
-                        <div class="hero-badge">✨ 100% Authentic Indian Craftsmanship</div>
-                        <h1 class="hero-title">Timeless Heritage, <span>Directly from Skilled Craftspeople</span></h1>
-                        <p class="hero-description">
-                            Bring centuries of Indian art into your living spaces. Explore hand-cast brass antiquities, authentic Madhubani canvases, and exquisite Jaipur blue pottery.
-                        </p>
-                        <div class="hero-buttons">
-                            <a href="shop.html" class="btn btn-primary">Explore Handcrafted Treasures</a>
-                            <a href="about.html" class="btn btn-outline-gold" style="color: #fff; border-color: #fff;">Meet the Makers</a>
-                        </div>
-                    </div>
-                </div>
+                <a class="hero-image-link" href="shop.html" aria-label="Shop handcrafted products">
+                    <img class="hero-banner-image" src="https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=1920&q=85" alt="Handcrafted products" fetchpriority="high">
+                </a>
             </div>
-
-            <!-- Slide 2: Madhubani Folk Art -->
             <div class="hero-slide">
-                <div class="hero-slide-bg" style="background-image: url('https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1920&q=85');"></div>
-                <div class="hero-overlay"></div>
-                <div class="container" style="height: 100%;">
-                    <div class="hero-content">
-                        <div class="hero-badge">🎨 GI Heritage Mithila Collection</div>
-                        <h1 class="hero-title">Original Folk Art <span>With Provenance</span></h1>
-                        <p class="hero-description">
-                            Each painting tells a legend of nature, divinity, and rural harmony, handcrafted by third-generation folk painters in Bihar and Rajasthan.
-                        </p>
-                        <div class="hero-buttons">
-                            <a href="shop.html?category=paintings-art" class="btn btn-primary">Shop Paintings</a>
-                            <a href="shop.html" class="btn btn-outline-gold" style="color: #fff; border-color: #fff;">View All Catalog</a>
-                        </div>
-                    </div>
-                </div>
+                <a class="hero-image-link" href="shop.html?category=paintings-art" aria-label="Shop handmade paintings and folk art">
+                    <img class="hero-banner-image" src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1920&q=85" alt="Paintings and folk art" loading="lazy">
+                </a>
             </div>
-
-            <!-- Slide 3: Handloom & Sacred Decor -->
             <div class="hero-slide">
-                <div class="hero-slide-bg" style="background-image: url('https://anjorahandicrafts.online/assets/images/Home_Banner_Hair_Band.jpg');"></div>
-                <div class="hero-overlay"></div>
-                <div class="container" style="height: 100%;">
-                    <div class="hero-content">
-                        <div class="hero-badge">🪔 Festive & Spiritual Decor</div>
-                        <h1 class="hero-title">Sacred Brass Urlis <span>& Pooja Essentials</span></h1>
-                        <p class="hero-description">
-                            Infuse spiritual tranquility and regal grace into your home sanctuary with heavy-cast solid brass diyas and traditional pooja hampers.
-                        </p>
-                        <div class="hero-buttons">
-                            <a href="shop.html?category=pooja-festive" class="btn btn-primary">Shop Pooja Hampers</a>
-                            <a href="shop.html" class="btn btn-outline-gold" style="color: #fff; border-color: #fff;">Explore Festive</a>
-                        </div>
-                    </div>
-                </div>
+                <a class="hero-image-link" href="shop.html?q=hair%20band" aria-label="Shop handmade hair bands">
+                    <img class="hero-banner-image" src="assets/images/Home_Banner_Hair_Band.jpg" alt="Handmade flower hair band" loading="lazy">
+                </a>
             </div>
         </div>
-
-        <!-- Carousel Indicators -->
-        <div class="hero-controls">
-            <div class="hero-dot active"></div>
-            <div class="hero-dot"></div>
-            <div class="hero-dot"></div>
+        <div class="hero-controls" aria-label="Choose slideshow image">
+            <button type="button" class="hero-dot active" aria-label="Show slide 1"></button>
+            <button type="button" class="hero-dot" aria-label="Show slide 2"></button>
+            <button type="button" class="hero-dot" aria-label="Show slide 3"></button>
         </div>
     </section>
 
