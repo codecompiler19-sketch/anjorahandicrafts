@@ -4,7 +4,7 @@
 
 const Shop = {
     state: {
-        category: "all",
+        category: "handmade-accessories",
         priceRange: "all",
         sortBy: "featured",
         searchQuery: "",
@@ -20,8 +20,10 @@ const Shop = {
 
     parseURLParams() {
         const params = new URLSearchParams(window.location.search);
-        if (params.has("category")) {
-            this.state.category = params.get("category");
+        if (params.has("category") && params.get("category") === "handmade-accessories") {
+            this.state.category = "handmade-accessories";
+        } else {
+            this.state.category = "handmade-accessories";
         }
         if (params.has("search") || params.has("q")) {
             this.state.searchQuery = (params.get("search") || params.get("q")).toLowerCase();
@@ -34,31 +36,21 @@ const Shop = {
         const listEl = document.getElementById("categoryFilterList");
         if (!listEl) return;
 
-        const totalAll = PRODUCTS.length;
-
-        let html = `
+        const handmadeCategory = CATEGORIES.find(cat => cat.id === "handmade-accessories");
+        if (!handmadeCategory) {
+            listEl.innerHTML = "";
+            return;
+        }
+        const count = PRODUCTS.filter(p => p.category === "handmade-accessories").length;
+        listEl.innerHTML = `
             <li>
                 <label class="filter-label">
-                    <input type="radio" name="catFilter" value="all" ${this.state.category === 'all' ? 'checked' : ''}>
-                    <span>All Collections (${totalAll})</span>
+                    <input type="radio" name="catFilter" value="handmade-accessories" checked>
+                    <span>Handmade Accessories (${count})</span>
                 </label>
             </li>
         `;
 
-        CATEGORIES.forEach(cat => {
-            const count = PRODUCTS.filter(p => p.category === cat.id).length;
-            const checked = this.state.category === cat.id ? 'checked' : '';
-            html += `
-                <li>
-                    <label class="filter-label">
-                        <input type="radio" name="catFilter" value="${cat.id}" ${checked}>
-                        <span>${cat.name} (${count})</span>
-                    </label>
-                </li>
-            `;
-        });
-
-        listEl.innerHTML = html;
     },
 
     bindEvents() {
