@@ -1,8 +1,8 @@
-import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAIg8X7TGrRmhed31LOZwqkRA2K8nSVjlI",
+  apiKey: "AIzaSyAIg8X7TGrRmhed31LOZwqkRAK2n8SVjlI",
   authDomain: "anjanahandicrafts-6e4ce.firebaseapp.com",
   projectId: "anjanahandicrafts-6e4ce",
   storageBucket: "anjanahandicrafts-6e4ce.firebasestorage.app",
