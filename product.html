@@ -335,7 +335,7 @@
             currentProduct = window.getProductById(productId) || PRODUCTS[0];
 
             // Set product-specific SEO metadata for search engines and social previews.
-            document.title = `${currentProduct.name} | Anjora Handicrafts`;
+            document.title = `${currentProduct.seoTitle || currentProduct.name} | Anjora Handicrafts`;
             let descriptionMeta = document.querySelector('meta[name="description"]');
             if (!descriptionMeta) {
                 descriptionMeta = document.createElement("meta");
@@ -350,6 +350,9 @@
                 document.head.appendChild(keywordsMeta);
             }
             keywordsMeta.content = currentProduct.tags.join(", ");
+            let canonicalLink = document.querySelector("link[rel=canonical]");
+            if (!canonicalLink) { canonicalLink = document.createElement("link"); canonicalLink.rel = "canonical"; document.head.appendChild(canonicalLink); }
+            canonicalLink.href = "https://anjorahandicrafts.online/" + currentProduct.slug + ".html";
             document.title = currentProduct.seoTitle || currentProduct.name;
 
             if (currentProduct) {
@@ -380,13 +383,13 @@
                 // Main Image
                 const mainImg = document.getElementById("mainGalleryImg");
                 mainImg.src = encodeURI(currentProduct.images[0]);
-                mainImg.alt = currentProduct.name;
+                mainImg.alt = currentProduct.imageAltText || currentProduct.name;
 
                 // Thumbs
                 const thumbsList = document.getElementById("galleryThumbsList");
                 thumbsList.innerHTML = currentProduct.images.map((img, idx) => `
                     <div class="gallery-thumb ${idx === 0 ? 'active' : ''}" onclick="selectGalleryImg('${img}', this)">
-                        <img src="${img}" alt="${currentProduct.name} view ${idx + 1}">
+                        <img src="${img}" alt="${currentProduct.imageAltText || currentProduct.name} view ${idx + 1}">
                     </div>
                 `).join("");
 
