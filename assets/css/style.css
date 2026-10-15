@@ -2742,3 +2742,64 @@ input, select, textarea { min-width: 0; max-width: 100%; }
     object-fit: cover;
     object-position: center;
 }
+
+
+/* Responsive image-only homepage slideshow: show the entire banner on every screen.
+   Keep the banner's original aspect ratio so text and products are never cropped. */
+.hero-section.hero-image-only {
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: auto !important;
+    overflow: hidden;
+}
+.hero-section.hero-image-only .hero-slider {
+    width: 100%;
+    height: auto !important;
+    min-height: 0 !important;
+}
+.hero-section.hero-image-only .hero-slide {
+    inset: 0;
+    width: 100%;
+    height: auto;
+}
+.hero-section.hero-image-only .hero-slide.active {
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+}
+.hero-section.hero-image-only .hero-image-link {
+    display: block;
+    width: 100%;
+    line-height: 0;
+}
+.hero-section.hero-image-only .hero-banner-image {
+    display: block;
+    width: 100%;
+    height: auto !important;
+    max-width: 100%;
+    object-fit: contain !important;
+    object-position: center;
+}
+.hero-section.hero-image-only .hero-controls {
+    bottom: 12px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    gap: 10px;
+}
+@media (max-width: 768px) {
+    .hero-section.hero-image-only {
+        aspect-ratio: auto !important;
+    }
+    .hero-section.hero-image-only .hero-controls {
+        bottom: 8px;
+    }
+}
+@media (max-width: 420px) {
+    .hero-section.hero-image-only {
+        aspect-ratio: auto !important;
+    }
+    .hero-section.hero-image-only .hero-banner-image {
+        height: auto !important;
+    }
+}
