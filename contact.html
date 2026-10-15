@@ -42,13 +42,25 @@
             </div>
         </div>
 
-        <nav class="header-nav">
+        <!-- Navigation Bar -->
+        <nav class="header-nav" aria-label="Main navigation">
             <div class="container">
                 <ul class="nav-menu">
                     <li><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="shop.html" class="nav-link">Collections</a></li>
+                    <li><a href="shop.html" class="nav-link">Shop All</a></li>
+                    <li class="nav-item-dropdown">
+                        <a href="shop.html?category=handmade-accessories" class="nav-link">Handmade Accessories
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:3px;" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </a>
+                        <div class="nav-dropdown">
+                            <a href="shop.html?q=hair%20band" class="dropdown-link">Hair Bands <span>→</span></a>
+                            <a href="shop.html?q=keychain" class="dropdown-link">Keychains <span>→</span></a>
+                            <a href="shop.html?category=handmade-accessories" class="dropdown-link">More Handmade Products <span>→</span></a>
+                        </div>
+                    </li>
+                    <li><a href="shop.html?q=gift" class="nav-link">Gift Ideas</a></li>
                     <li><a href="about.html" class="nav-link">About Us</a></li>
-                    <li><a href="contact.html" class="nav-link active">Contact</a></li>
+                    <li><a href="contact.html" class="nav-link active">Contact Us</a></li>
                 </ul>
             </div>
         </nav>
@@ -154,9 +166,20 @@
         <div class="cart-header"><h3>Anjora Handicrafts</h3><button id="mobileNavClose" class="cart-close-btn" aria-label="Close navigation">✕</button></div>
         <div class="mobile-nav-content">
             <a class="mobile-nav-link" href="index.html">Home</a>
-            <details class="mobile-nav-accordion" open><summary>Shop</summary><div class="mobile-nav-submenu"><a href="shop.html">All Products</a><a href="shop.html?category=handmade-accessories">Handmade Accessories</a></div></details>
+            <a class="mobile-nav-link" href="shop.html">Shop All</a>
+            <details class="mobile-nav-accordion" open>
+                <summary>Handmade Accessories</summary>
+                <div class="mobile-nav-submenu">
+                    <a href="shop.html?category=handmade-accessories">All Handmade Accessories</a>
+                    <a href="shop.html?q=hair%20band">Hair Bands</a>
+                    <a href="shop.html?q=keychain">Keychains</a>
+                    <a href="shop.html?category=handmade-accessories">More Handmade Products</a>
+                </div>
+            </details>
+            <a class="mobile-nav-link" href="shop.html?q=gift">Gift Ideas</a>
+            <a class="mobile-nav-link" href="about.html">About Us</a>
+            <a class="mobile-nav-link" href="contact.html">Contact Us</a>
             <details class="mobile-nav-accordion"><summary>My Account & Shopping</summary><div class="mobile-nav-submenu"><a href="wishlist.html">Wishlist</a><a href="cart.html">Shopping Cart</a><a href="checkout.html">Checkout</a></div></details>
-            <details class="mobile-nav-accordion"><summary>About Anjora</summary><div class="mobile-nav-submenu"><a href="about.html">About Us</a><a href="contact.html">Contact Us</a></div></details>
             <details class="mobile-nav-accordion"><summary>Policies</summary><div class="mobile-nav-submenu"><a href="refund-policy.html">Shipping & Refund Policy</a><a href="privacy-policy.html">Privacy Policy</a><a href="terms.html">Terms & Conditions</a></div></details>
         </div>
     </div>
