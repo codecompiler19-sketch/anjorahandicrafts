@@ -2461,3 +2461,19 @@ input, select, textarea { min-width: 0; max-width: 100%; }
     .contact-layout .btn { width: 100%; white-space: normal; }
     .contact-layout p { overflow-wrap: anywhere; }
 }
+
+
+/* Shared mobile navigation accordion on every page */
+.mobile-nav-drawer { z-index: 1200; width: min(88vw, 380px); max-width: 100%; overflow: hidden; }
+.mobile-nav-content { padding: 1rem 1.1rem 2rem; overflow-y: auto; max-height: calc(100dvh - 78px); }
+.mobile-nav-link, .mobile-nav-submenu a { display:block; padding: .85rem .65rem; color: var(--text-primary); border-bottom: 1px solid var(--border-color); font-weight:600; }
+.mobile-nav-accordion { border-bottom: 1px solid var(--border-color); }
+.mobile-nav-accordion summary { cursor:pointer; list-style:none; padding: 1rem .65rem; font-weight:700; color:var(--secondary); display:flex; justify-content:space-between; align-items:center; gap:1rem; }
+.mobile-nav-accordion summary::-webkit-details-marker { display:none; }
+.mobile-nav-accordion summary::after { content:'+'; font-size:1.25rem; color:var(--primary); }
+.mobile-nav-accordion[open] summary::after { content:'−'; }
+.mobile-nav-submenu { padding:0 .35rem .65rem .75rem; }
+.mobile-nav-submenu a { font-weight:500; padding:.7rem .65rem; }
+.mobile-toggle { display:inline-flex; align-items:center; justify-content:center; min-width:44px; min-height:44px; border-radius:8px; color:var(--secondary); }
+.mobile-toggle:focus-visible, .mobile-nav-accordion summary:focus-visible, .mobile-nav-link:focus-visible { outline:2px solid var(--primary); outline-offset:3px; }
+@media (max-width: 800px) { .mobile-nav-drawer { display:block; } }
