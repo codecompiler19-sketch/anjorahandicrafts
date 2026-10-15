@@ -243,7 +243,7 @@
     <script src="assets/js/products.js?v=20261015-collections"></script>
     <script src="assets/js/cart.js"></script>
     <script src="assets/js/main.js?v=20261016-social-sidebar-preview"></script>
-    <script type="module" src="assets/js/auth-menu.js?v=20261016-customer-menu"></script>
+    <script type="module" src="assets/js/auth-menu.js?v=20261016-customer-menu-v2"></script>
     <script>
       if (window.location.search) window.history.replaceState({}, document.title, window.location.pathname + window.location.hash);
       window.__firebaseAccountReady = false;
@@ -406,6 +406,9 @@
       }
       onAuthStateChanged(auth, async user => {
         currentUser = user;
+        // Keep the shared header in sync with the account page authentication state.
+        window.renderAnjoraAccountMenu?.(user);
+        window.dispatchEvent(new CustomEvent("anjora-auth-state", { detail: { user } }));
         $("accountAccess").hidden = !!user;
         $("accountSignedIn").hidden = !user;
         $("accountTitle").textContent = user ? "Your account" : "Welcome to Anjora";
