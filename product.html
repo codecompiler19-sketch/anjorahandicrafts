@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Handcrafted Treasure | Anjora Handicrafts</title>
+    <meta name="description" content="Shop handcrafted Indian accessories and heritage gifts from Anjora Handicrafts. Discover unique handmade designs and thoughtful gifts.">
     
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪔</text></svg>">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -322,6 +323,23 @@
             const params = new URLSearchParams(window.location.search);
             const productId = params.get("id") || params.get("slug") || "prod-001";
             currentProduct = window.getProductById(productId) || PRODUCTS[0];
+
+            // Set product-specific SEO metadata for search engines and social previews.
+            document.title = `${currentProduct.name} | Anjora Handicrafts`;
+            let descriptionMeta = document.querySelector('meta[name="description"]');
+            if (!descriptionMeta) {
+                descriptionMeta = document.createElement("meta");
+                descriptionMeta.name = "description";
+                document.head.appendChild(descriptionMeta);
+            }
+            descriptionMeta.content = currentProduct.shortDesc.slice(0, 155);
+            let keywordsMeta = document.querySelector('meta[name="keywords"]');
+            if (!keywordsMeta) {
+                keywordsMeta = document.createElement("meta");
+                keywordsMeta.name = "keywords";
+                document.head.appendChild(keywordsMeta);
+            }
+            keywordsMeta.content = currentProduct.tags.join(", ");
 
             if (currentProduct) {
                 document.title = `${currentProduct.name} | Anjora Handicrafts`;
